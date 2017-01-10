@@ -1,120 +1,130 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
 
-  <head>
+
+
+<html  lang="en-us" class="no-js">
+<head>
+    <title>arch linux n00b guide</title>
     <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<meta property="og:title" content="arch linux n00b guide" />
-<meta property="og:description" content="Prerequisites Check internet connection ping -c 3 www.google.com  If needed try connecting via WiFi wifi-menu  Check EFI vars present efivar -l  Main installation Set system time using NTP: timedatectl set-ntp true timedatectl status  Partitioning TIP: Leave a 128MiB empty ‘gap’ partition in between your ‘other os’ and your new partition.
-Zap all data on disk and create a new GPT table. Show current partition table" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://eli5.it/post/arch-linux-n00b-guide/" />
-
-
-<meta property="og:updated_time" content="2017-01-10T00:14:35&#43;01:00"/>
-
-
-
-
-
-
-
-
-
-
-
-<meta itemprop="name" content="arch linux n00b guide">
-<meta itemprop="description" content="Prerequisites Check internet connection ping -c 3 www.google.com  If needed try connecting via WiFi wifi-menu  Check EFI vars present efivar -l  Main installation Set system time using NTP: timedatectl set-ntp true timedatectl status  Partitioning TIP: Leave a 128MiB empty ‘gap’ partition in between your ‘other os’ and your new partition.
-Zap all data on disk and create a new GPT table. Show current partition table">
-
-
-<meta itemprop="dateModified" content="2017-01-10T00:14:35&#43;01:00" />
-<meta itemprop="wordCount" content="839">
-
-
-
-<meta itemprop="keywords" content="" />
-
-
-
-  <meta name="twitter:card" content="summary"/>
-
-
-
-<meta name="twitter:title" content="arch linux n00b guide"/>
-<meta name="twitter:description" content="Prerequisites Check internet connection ping -c 3 www.google.com  If needed try connecting via WiFi wifi-menu  Check EFI vars present efivar -l  Main installation Set system time using NTP: timedatectl set-ntp true timedatectl status  Partitioning TIP: Leave a 128MiB empty ‘gap’ partition in between your ‘other os’ and your new partition.
-Zap all data on disk and create a new GPT table. Show current partition table"/>
-
-
-
-
-
-
-
-
-
-
-<meta name="generator" content="Hugo 0.18.1" />
+    
 
 
     <link rel="canonical" href="http://eli5.it/post/arch-linux-n00b-guide/">
 
-    <title>arch linux n00b guide | Fabio&#39;s N00B Guides</title>
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="144x144">
 
-    <!-- combined, minified CSS -->
-    <link href="http://eli5.it/css/style.css" rel="stylesheet">
-
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 
     
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-123456-78', 'auto');
-ga('send', 'pageview');
+
+    <meta name="theme-color" content="" />
+
+    
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Explain IT Like I\x27m 5",
+    
+    "url": "http:\/\/eli5.it\/"
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
-
-
-    
-
-    
-
-  </head>
-
-  <body>
-
-    <div class="blog-masthead">
-      <div class="container">
-        <nav class="nav blog-nav">
-          <a class="nav-link " href="http://eli5.it/">Home</a>
-          
-          
-          
-        </nav>
-      </div>
-    </div>
-
-    <header class="blog-header">
-      <div class="container">
-        <h1 class="blog-title"><a href="http://eli5.it/" rel="home">Fabio's N00B Guides</a></h1>
-        
-      </div>
-    </header>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8 blog-main">
-
-          
-
-
-<article class="blog-post">
-  <header>
-    <h2 class="blog-post-title"><a href="http://eli5.it/post/arch-linux-n00b-guide/">arch linux n00b guide</a></h2>
-    <p class="blog-post-meta"><time datetime="2017-01-10T00:14:35&#43;01:00">Tue Jan 10, 2017</time> by Fabio Bier</p>
-  </header>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "http:\/\/eli5.it\/"
   
+  
+  
+  
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position":  1 ,
+        "item": {
+          "@id": "http:\/\/eli5.it\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position":  2 ,
+        "item": {
+          "@id": "http:\/\/eli5.it\/post\/",
+          "name": "post"
+        }
+    },{
+        "@type": "ListItem",
+        "position":  3 ,
+        "item": {
+          "@id": "http:\/\/eli5.it\/post\/arch-linux-n00b-guide\/",
+          "name": "arch-linux-n00b-guide"
+        }
+    }]
+}
+</script>
+
+
+
+
+
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <style amp-custom>
+        /**
+* stylesheet.html
+* ---------------
+* This is the stylesheet that gets injected as a fallback if no layouts/partials/stylesheet.html file is available
+* in your project file.
+*
+* For further details, please have a look at:
+* https://gohugo-amp.gohugohq.com/install/
+*
+**/
+
+body { background-color: #ffffff; }
+    </style>
+
+
+</head>
+
+<body>
+
+
+
+
+<main>
+    
 
 <h2 id="prerequisites">Prerequisites</h2>
 
@@ -496,78 +506,11 @@ UUID=&lt;your-uuid&gt; /media/games ext4 defaults 0 1
 <pre><code>sudo cp .mozilla/firefox/5i95pb8t.default/extensions/keefox@chris.tomlinson/deps/KeePassRPC.plgx /usr/share/keepass/Plugins/
 </code></pre>
 
-
-  
-
-  
-  <hr>
-  <footer>
-
-  
-    <section>
-    <h4>Share</h4>
-    <nav class="nav sharing-icons">
-      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2feli5.it%2fpost%2farch-linux-n00b-guide%2f" title="Share on Facebook"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
-      <a class="nav-item" href="https://plus.google.com/share?url=http%3a%2f%2feli5.it%2fpost%2farch-linux-n00b-guide%2f" title="Share on Google+"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
-      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2feli5.it%2fpost%2farch-linux-n00b-guide%2f" title="Share on LinkedIn"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
-      <a class="nav-item" href="https://twitter.com/home?status=http%3a%2f%2feli5.it%2fpost%2farch-linux-n00b-guide%2f" title="Tweet this"><span class="fa fa-twitter fa-2x"></span></a>
-    </nav>
-  </section>
-
-  
-
-  
-  <div id="disqus_thread"></div>
-<script type="text/javascript">
-
-(function() {
-  
-  
-  if (window.location.hostname == "localhost")
-    return;
-
-  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-  var disqus_shortname = 'xblackbytesx';
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-  
-  </footer>
-  
-
-</article> 
+</main>
 
 
 
-        </div> <!-- /.blog-main -->
+You must set a googleAnalytics UA-Code within the global config.toml Params.
 
-        <aside class="col-sm-3 offset-sm-1 blog-sidebar">
-  
-
-  
-
-  
-</aside>
-
-
-      </div> <!-- /.row -->
-    </div> <!-- /.container -->
-
-    <footer class="blog-footer">
-      <p>
-      
-      Blog template created by <a href="https://twitter.com/mdo">@mdo</a>, ported to Hugo by <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
-      
-      </p>
-      <p>
-      <a href="#">Back to top</a>
-      </p>
-    </footer>
-
-  </body>
-
+</body>
 </html>
