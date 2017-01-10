@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Explain IT Like I&#39;m 5</title>
+    <link>http://eli5.it/categories/linux/index.xml</link>
+    <description>Recent content in Linux on Explain IT Like I&#39;m 5</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="http://eli5.it/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>arch linux n00b guide</title>
+      <link>http://eli5.it/post/arch-linux-n00b-guide/</link>
+      <pubDate>Tue, 10 Jan 2017 00:14:35 +0100</pubDate>
+      
+      <guid>http://eli5.it/post/arch-linux-n00b-guide/</guid>
+      <description>
+
+&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+
+&lt;h3 id=&#34;check-internet-connection&#34;&gt;Check internet connection&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;ping -c 3 www.google.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;if-needed-try-connecting-via-wifi&#34;&gt;If needed try connecting via WiFi&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;wifi-menu
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;check-efi-vars-present&#34;&gt;Check EFI vars present&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;efivar -l
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;main-installation&#34;&gt;Main installation&lt;/h2&gt;
+
+&lt;h3 id=&#34;set-system-time-using-ntp&#34;&gt;Set system time using NTP:&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;timedatectl set-ntp true
+timedatectl status
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;partitioning&#34;&gt;Partitioning&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;TIP:&lt;/strong&gt; Leave a 128MiB empty ‘gap’ partition in between your ‘other os’ and your new partition.&lt;/p&gt;
+
+&lt;h4 id=&#34;zap-all-data-on-disk-and-create-a-new-gpt-table&#34;&gt;Zap all data on disk and create a new GPT table.&lt;/h4&gt;
+
+&lt;p&gt;Show current partition table&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;lsblk
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;NOTE: X represents your drive mountpoint. mine is &lt;code&gt;sda&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gdisk /dev/sdX
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;o&lt;/code&gt; # Create a new empty GUID partition table (GPT)&lt;br /&gt;
+&lt;code&gt;y&lt;/code&gt; # Confirm&lt;/p&gt;
+
+&lt;p&gt;EFI System Partition (ESP)&lt;br /&gt;
+&lt;code&gt;n&lt;/code&gt; # Add a new partition&lt;br /&gt;
+&lt;code&gt;1&lt;/code&gt; # Partition number&lt;br /&gt;
+&lt;code&gt;[Return]&lt;/code&gt; # First sector&lt;br /&gt;
+&lt;code&gt;+512M&lt;/code&gt; # Last sector = size&lt;br /&gt;
+&lt;code&gt;ef00&lt;/code&gt; # Partition type = EFI System&lt;/p&gt;
+
+&lt;p&gt;LUKS container&lt;br /&gt;
+&lt;code&gt;n&lt;/code&gt; # Add a new partition&lt;br /&gt;
+&lt;code&gt;2&lt;/code&gt; # Partition number&lt;br /&gt;
+&lt;code&gt;[Return]&lt;/code&gt; # First sector&lt;br /&gt;
+&lt;code&gt;[Return]&lt;/code&gt; # Last sector = Use remaining space&lt;br /&gt;
+&lt;code&gt;8e00&lt;/code&gt; # Partition type = Linux LVM&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;p&lt;/code&gt; # Check partitions&lt;br /&gt;
+&lt;code&gt;w&lt;/code&gt; # Write changes to disk and exit&lt;br /&gt;
+&lt;code&gt;y&lt;/code&gt; # Confirm&lt;/p&gt;
+
+&lt;p&gt;Format EFI System Partition (ESP):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mkfs.fat -F32 /dev/sda1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Encrypt the other partition with LUKS (512 Bit AES-XTS and SHA512 for passphrase):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cryptsetup luksFormat -v -s 512 -h sha512 /dev/sda2
+cryptsetup luksOpen /dev/sda2 luks
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Setup Logical Volume Manager:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pvcreate /dev/mapper/luks
+vgcreate rootvg /dev/mapper/luks
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create Logical Volumes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;lvcreate -n swap -L 4G -C y rootvg
+lvcreate -n root -L 25G rootvg
+lvcreate -n home -l 100%FREE rootvg
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Check LVM Setup:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pvs
+vgs
+lvs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create filesystems for LVs:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mkfs.ext4 /dev/mapper/rootvg-home
+mkfs.ext4 /dev/mapper/rootvg-root
+mkswap /dev/mapper/rootvg-swap
+swapon /dev/mapper/rootvg-swap
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Mount LVs and ESP for installation:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mount /dev/mapper/rootvg-root /mnt
+mkdir /mnt/boot
+mkdir /mnt/home
+mount /dev/mapper/rootvg-home /mnt/home
+mount /dev/sda1 /mnt/boot
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Selecting fastest mirrors&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+sed -i &#39;s/^#Server/Server/&#39; /etc/pacman.d/mirrorlist.backup
+rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup &amp;gt; /etc/pacman.d/mirrorlist
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;install-base-system&#34;&gt;Install base system&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;pacstrap -i /mnt base base-devel
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;generate-fstab-make-sure-swapon-is-set-when-running-these&#34;&gt;Generate fstab (make sure swapon is set when running these)&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;genfstab -p /mnt &amp;gt;&amp;gt; /mnt/etc/fstab
+nano /mnt/etc/fstab (for SSD change swap line from ‘defaults’ to ‘defaults,discard’)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;mount-into-system&#34;&gt;Mount into system&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;arch-chroot /mnt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;set-hostname&#34;&gt;Set hostname&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;echo arch-laptop &amp;gt; /etc/hostname
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;set-timezone&#34;&gt;Set timezone&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;ln -s /usr/share/zoneinfo/Europe/Amsterdam /etc/localtime
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;locales&#34;&gt;Locales&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;nano /etc/locale.gen
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Uncomment the following two locales&lt;br /&gt;
+&lt;code&gt;en_US.UTF-8 UTF-8&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;en_US ISO-8859-1&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;locale-gen
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;set-language&#34;&gt;Set Language&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;echo LANG=en_US.UTF-8 &amp;gt; /etc/locale.conf
+export LANG=en_US.UTF-8
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Enabling Multilib and AUR repos&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;nano /etc/pacman.conf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Scroll down and uncomment these lines:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[multilib]
+Include = /etc/pacman.d/mirrorlist&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;And add these lines at the bottom of the file:&lt;br /&gt;
+&lt;code&gt;[archlinuxfr]&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;SigLevel = Never&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;Server = https://repo.archlinux.fr/$arch&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Update the repos&amp;rsquo;s&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pacman -Syu
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;user-management&#34;&gt;User Management&lt;/h3&gt;
+
+&lt;h4 id=&#34;set-root-password&#34;&gt;Set root password&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;passwd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;create-user&#34;&gt;Create user:&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;useradd -m -g users -G wheel,storage,power -s /bin/bash &amp;lt;user&amp;gt;
+passwd &amp;lt;user&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;setup-sudoers&#34;&gt;Setup sudoers:&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;EDITOR=nano visudo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Uncomment this line:
+&lt;code&gt;%wheel ALL=(ALL) ALL&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Add to the bottom:
+&lt;code&gt;Defaults rootpw&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;installing-some-basic-software&#34;&gt;Installing some basic software&lt;/h2&gt;
+
+&lt;p&gt;Bash completion:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pacman -S bash-completion
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Install packages for WiFi:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pacman -S dialog wpa_supplicant wpa_actiond rfkill
+ip link
+systemctl enable netctl-auto@wlp2s0b1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Installing the bootloader:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mount -t efivarfs efivarfs /sys/firmware/efi/efivars
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;bootctl install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Write long UUID to file for later use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;blkid | grep sda2 | cut -f2 -d\&amp;quot; &amp;amp;gt; /boot/loader/entries/arch.conf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create an entry for Arch&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;nano /boot/loader/entries/arch.conf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;title Arch Linux&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;linux /vmlinuz-linux&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;initrd /initramfs-linux.img&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;options cryptdevice=UUID=&amp;lt;YOUR_UUID&amp;gt;:rootvg:allow-discards root=/dev/mapper/rootvg-root rw&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;install-intel-microcode&#34;&gt;Install Intel Microcode:&lt;/h3&gt;
+
+&lt;p&gt;This is useful for when you want to be able to receive firmware updates to your CPU.
+You should only follow this step if you run on a Intel CPU.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pacman -S intel-ucode
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add the following to your previously created boot entry:&lt;br /&gt;
+&lt;code&gt;initrd /intel-ucode.img&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;nano /boot/loader/entries/arch.conf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Your final boot entry should look like this:&lt;br /&gt;
+&lt;code&gt;title Arch Linux&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;linux /vmlinuz-linux&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;initrd /intel-ucode.img&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;initrd /initramfs-linux.img&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;options cryptdevice=UUID=&amp;lt;YOUR_UUID&amp;gt;:luks root=/dev/mapper/rootvg-root rw&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;set-required-hooks-for-boot-init&#34;&gt;Set required hooks for boot init.&lt;/h3&gt;
+
+&lt;p&gt;in &lt;code&gt;/etc/mkinitcpio.conf&lt;/code&gt; make sure the following hooks are present, if not add them:&lt;br /&gt;
+&lt;code&gt;encrypt&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;lvm2&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;An example of a complete string of hooks would be:
+&lt;code&gt;base udev autodetect modconf block filesystems keyboard keymap encrypt lvm2 fsck&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; sudo mkinitcpio -p linux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;finalize&#34;&gt;Finalize:&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;exit
+umount -R /mnt
+reboot
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;On laptops with touchpad:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pacman -S xf86-input-synaptics
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Install graphics driver and display server&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pacman -S mesa
+sudo pacman -S xorg-server xorg-server-utils xorg-xinit xorg-twm xorg-xclock
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;installing-and-enabling-a-firewall&#34;&gt;Installing and enabling a Firewall&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pacman -S ufw
+sudo ufw enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;installing-and-enabling-openssh-server&#34;&gt;Installing and enabling OpenSSH-Server&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pacman -S openssh
+sudo systemctl start sshd.socket
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;if-you-want-to-have-ssh-running-as-as-service-run-this&#34;&gt;If you want to have SSH running as as service run this&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo systemctl enable sshd.socket
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;if-needed-make-sure-the-ssh-connection-get-s-through-the-firewall&#34;&gt;If needed make sure the SSH connection get&amp;rsquo;s through the Firewall&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo ufw allow 22
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;install-awesome-gui-stuff&#34;&gt;Install awesome GUI stuff&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pacman -S gnome
+sudo pacman -S gdm
+sudo systemctl enable gdm.service
+sudo pacman -S gnome-tweak-tool gnome-keyring
+sudo pacman -S yaourt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Install some funky themes&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pacman -S arc-gtk-theme
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Install some awesome packages&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pacman -S file-roller firefox nodejs npm vlc keepass vim git xdotool xsel
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;macbook-specific&#34;&gt;Macbook Specific:&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pacman -S xf86-video-intel
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;after-install-stuff-optional&#34;&gt;After install stuff [Optional]:&lt;/h2&gt;
+
+&lt;h3 id=&#34;terminal-preference&#34;&gt;Terminal preference&lt;/h3&gt;
+
+&lt;p&gt;See the &lt;code&gt;zsh n00b guide&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;auto-mounting-of-media-data-and-media-games&#34;&gt;Auto mounting of &lt;code&gt;/media/data&lt;/code&gt; and &lt;code&gt;/media/games&lt;/code&gt;.&lt;/h3&gt;
+
+&lt;p&gt;First make the folders to mount to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Sudo mkdir -p /media/data
+Sudo mkdir -p /media/games
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;find-the-proper-uuids&#34;&gt;Find the proper UUIDs:&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;ls -l /dev/disk/by-uuid
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;then-add-the-uuid-of-desired-drive-to-the-fstab-like-so&#34;&gt;Then add the UUID of desired drive to the fstab like so:&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;UUID=&amp;lt;your-uuid&amp;gt; /media/data ext4 defaults 0 1
+UUID=&amp;lt;your-uuid&amp;gt; /media/games ext4 defaults 0 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;installing-steam-native-runtime&#34;&gt;Installing steam native runtime:&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pacman -S steam steam-native-runtime
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;link-keepass-plugins&#34;&gt;Link Keepass plugins:&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo cp .mozilla/firefox/5i95pb8t.default/extensions/keefox@chris.tomlinson/deps/KeePassRPC.plgx /usr/share/keepass/Plugins/
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

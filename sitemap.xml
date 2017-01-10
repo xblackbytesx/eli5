@@ -7,7 +7,24 @@
   </url>
   
   <url>
+    <loc>http://eli5.it/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://eli5.it/</loc>
+    <lastmod>2017-01-10T00:14:35+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://eli5.it/series/install-guides/</loc>
+    <lastmod>2017-01-10T00:14:35+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://eli5.it/categories/linux/</loc>
     <lastmod>2017-01-10T00:14:35+01:00</lastmod>
     <priority>0</priority>
   </url>
@@ -15,6 +32,11 @@
   <url>
     <loc>http://eli5.it/post/</loc>
     <lastmod>2017-01-10T00:14:35+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://eli5.it/series/</loc>
     <priority>0</priority>
   </url>
   
