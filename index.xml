@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Fabio&#39;s N00B Guides</title>
-    <link>https://xblackbytesx.github.io/eli5/index.xml</link>
+    <link>http://eli5.it/index.xml</link>
     <description>Recent content on Fabio&#39;s N00B Guides</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 10 Jan 2017 00:14:35 +0100</lastBuildDate>
-    <atom:link href="https://xblackbytesx.github.io/eli5/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://eli5.it/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>arch linux n00b guide</title>
-      <link>https://xblackbytesx.github.io/eli5/post/arch-linux-n00b-guide/</link>
+      <link>http://eli5.it/post/arch-linux-n00b-guide/</link>
       <pubDate>Tue, 10 Jan 2017 00:14:35 +0100</pubDate>
       
-      <guid>https://xblackbytesx.github.io/eli5/post/arch-linux-n00b-guide/</guid>
+      <guid>http://eli5.it/post/arch-linux-n00b-guide/</guid>
       <description>
 
 &lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
