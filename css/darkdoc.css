@@ -1,11 +1,11 @@
 /**
- * https://github.com/eliasson/liquorice/
+ * https://github.com/eliasson/darkdoc/
  *
  * Copyright © 2014. Markus Eliasson <markus.eliasson.gmail.com>
  *
- * Liquorice is released under the MIT license.
+ * darkdoc is released under the MIT license.
  *
- * The CSS grid used by liquorice is based on the Skeleton grid:
+ * The CSS grid used by darkdoc is based on the Skeleton grid:
  *
  *   Skeleton V1.2
  *   Copyright 2011, Dave Gamache
@@ -33,7 +33,7 @@ a,
 a:active,
 a:hover,
 a:visited {
-    color: #202020;
+    color: #E06C75;
     text-decoration: none;
     font-weight: bold;
 }
