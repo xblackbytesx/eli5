@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="arch linux n00b guide" />
+<meta property="og:description" content="Prerequisites Check internet connection ping -c 3 www.google.com  If needed try connecting via WiFi wifi-menu  Check EFI vars present efivar -l  Main installation Set system time using NTP: timedatectl set-ntp true timedatectl status  Partitioning TIP: Leave a 128MiB empty ‘gap’ partition in between your ‘other os’ and your new partition.
+Zap all data on disk and create a new GPT table. Show current partition table" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/arch-linux-n00b-guide/" />
+
+
+<meta property="og:updated_time" content="2017-01-10T00:14:35&#43;01:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="arch linux n00b guide">
+<meta itemprop="description" content="Prerequisites Check internet connection ping -c 3 www.google.com  If needed try connecting via WiFi wifi-menu  Check EFI vars present efivar -l  Main installation Set system time using NTP: timedatectl set-ntp true timedatectl status  Partitioning TIP: Leave a 128MiB empty ‘gap’ partition in between your ‘other os’ and your new partition.
+Zap all data on disk and create a new GPT table. Show current partition table">
+
+
+<meta itemprop="dateModified" content="2017-01-10T00:14:35&#43;01:00" />
+<meta itemprop="wordCount" content="839">
+
+
+
+<meta itemprop="keywords" content="" />
+
+
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:title" content="arch linux n00b guide"/>
+<meta name="twitter:description" content="Prerequisites Check internet connection ping -c 3 www.google.com  If needed try connecting via WiFi wifi-menu  Check EFI vars present efivar -l  Main installation Set system time using NTP: timedatectl set-ntp true timedatectl status  Partitioning TIP: Leave a 128MiB empty ‘gap’ partition in between your ‘other os’ and your new partition.
+Zap all data on disk and create a new GPT table. Show current partition table"/>
+
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.18.1" />
+
+
+    <link rel="canonical" href="http://example.org/post/arch-linux-n00b-guide/">
+
+    <title>arch linux n00b guide | Fabio&#39;s N00B Guides</title>
+
+    <!-- combined, minified CSS -->
+    <link href="http://example.org/css/style.css" rel="stylesheet">
+
+    
+
+    
+
+    
+
+    
+
+  </head>
+
+  <body>
+
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="http://example.org/">Home</a>
+          
+          
+          
+        </nav>
+      </div>
+    </div>
+
+    <header class="blog-header">
+      <div class="container">
+        <h1 class="blog-title"><a href="http://example.org/" rel="home">Fabio's N00B Guides</a></h1>
+        
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+
+          
+
+
+<article class="blog-post">
+  <header>
+    <h2 class="blog-post-title"><a href="http://example.org/post/arch-linux-n00b-guide/">arch linux n00b guide</a></h2>
+    <p class="blog-post-meta"><time datetime="2017-01-10T00:14:35&#43;01:00">Tue Jan 10, 2017</time> by Fabio Bier</p>
+  </header>
+  
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<h3 id="check-internet-connection">Check internet connection</h3>
+
+<pre><code>ping -c 3 www.google.com
+</code></pre>
+
+<h3 id="if-needed-try-connecting-via-wifi">If needed try connecting via WiFi</h3>
+
+<pre><code>wifi-menu
+</code></pre>
+
+<h3 id="check-efi-vars-present">Check EFI vars present</h3>
+
+<pre><code>efivar -l
+</code></pre>
+
+<hr />
+
+<h2 id="main-installation">Main installation</h2>
+
+<h3 id="set-system-time-using-ntp">Set system time using NTP:</h3>
+
+<pre><code>timedatectl set-ntp true
+timedatectl status
+</code></pre>
+
+<h3 id="partitioning">Partitioning</h3>
+
+<p><strong>TIP:</strong> Leave a 128MiB empty ‘gap’ partition in between your ‘other os’ and your new partition.</p>
+
+<h4 id="zap-all-data-on-disk-and-create-a-new-gpt-table">Zap all data on disk and create a new GPT table.</h4>
+
+<p>Show current partition table</p>
+
+<pre><code>lsblk
+</code></pre>
+
+<p>NOTE: X represents your drive mountpoint. mine is <code>sda</code>.</p>
+
+<pre><code>gdisk /dev/sdX
+</code></pre>
+
+<p><code>o</code> # Create a new empty GUID partition table (GPT)<br />
+<code>y</code> # Confirm</p>
+
+<p>EFI System Partition (ESP)<br />
+<code>n</code> # Add a new partition<br />
+<code>1</code> # Partition number<br />
+<code>[Return]</code> # First sector<br />
+<code>+512M</code> # Last sector = size<br />
+<code>ef00</code> # Partition type = EFI System</p>
+
+<p>LUKS container<br />
+<code>n</code> # Add a new partition<br />
+<code>2</code> # Partition number<br />
+<code>[Return]</code> # First sector<br />
+<code>[Return]</code> # Last sector = Use remaining space<br />
+<code>8e00</code> # Partition type = Linux LVM</p>
+
+<p><code>p</code> # Check partitions<br />
+<code>w</code> # Write changes to disk and exit<br />
+<code>y</code> # Confirm</p>
+
+<p>Format EFI System Partition (ESP):</p>
+
+<pre><code>mkfs.fat -F32 /dev/sda1
+</code></pre>
+
+<p>Encrypt the other partition with LUKS (512 Bit AES-XTS and SHA512 for passphrase):</p>
+
+<pre><code>cryptsetup luksFormat -v -s 512 -h sha512 /dev/sda2
+cryptsetup luksOpen /dev/sda2 luks
+</code></pre>
+
+<p>Setup Logical Volume Manager:</p>
+
+<pre><code>pvcreate /dev/mapper/luks
+vgcreate rootvg /dev/mapper/luks
+</code></pre>
+
+<p>Create Logical Volumes:</p>
+
+<pre><code>lvcreate -n swap -L 4G -C y rootvg
+lvcreate -n root -L 25G rootvg
+lvcreate -n home -l 100%FREE rootvg
+</code></pre>
+
+<p>Check LVM Setup:</p>
+
+<pre><code>pvs
+vgs
+lvs
+</code></pre>
+
+<p>Create filesystems for LVs:</p>
+
+<pre><code>mkfs.ext4 /dev/mapper/rootvg-home
+mkfs.ext4 /dev/mapper/rootvg-root
+mkswap /dev/mapper/rootvg-swap
+swapon /dev/mapper/rootvg-swap
+</code></pre>
+
+<p>Mount LVs and ESP for installation:</p>
+
+<pre><code>mount /dev/mapper/rootvg-root /mnt
+mkdir /mnt/boot
+mkdir /mnt/home
+mount /dev/mapper/rootvg-home /mnt/home
+mount /dev/sda1 /mnt/boot
+</code></pre>
+
+<p>Selecting fastest mirrors</p>
+
+<pre><code>cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
+rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup &gt; /etc/pacman.d/mirrorlist
+</code></pre>
+
+<h3 id="install-base-system">Install base system</h3>
+
+<pre><code>pacstrap -i /mnt base base-devel
+</code></pre>
+
+<h3 id="generate-fstab-make-sure-swapon-is-set-when-running-these">Generate fstab (make sure swapon is set when running these)</h3>
+
+<pre><code>genfstab -p /mnt &gt;&gt; /mnt/etc/fstab
+nano /mnt/etc/fstab (for SSD change swap line from ‘defaults’ to ‘defaults,discard’)
+</code></pre>
+
+<h3 id="mount-into-system">Mount into system</h3>
+
+<pre><code>arch-chroot /mnt
+</code></pre>
+
+<h3 id="set-hostname">Set hostname</h3>
+
+<pre><code>echo arch-laptop &gt; /etc/hostname
+</code></pre>
+
+<h3 id="set-timezone">Set timezone</h3>
+
+<pre><code>ln -s /usr/share/zoneinfo/Europe/Amsterdam /etc/localtime
+</code></pre>
+
+<h3 id="locales">Locales</h3>
+
+<pre><code>nano /etc/locale.gen
+</code></pre>
+
+<p>Uncomment the following two locales<br />
+<code>en_US.UTF-8 UTF-8</code><br />
+<code>en_US ISO-8859-1</code></p>
+
+<pre><code>locale-gen
+</code></pre>
+
+<h3 id="set-language">Set Language</h3>
+
+<pre><code>echo LANG=en_US.UTF-8 &gt; /etc/locale.conf
+export LANG=en_US.UTF-8
+</code></pre>
+
+<p>Enabling Multilib and AUR repos</p>
+
+<pre><code>nano /etc/pacman.conf
+</code></pre>
+
+<p>Scroll down and uncomment these lines:</p>
+
+<p><code>[multilib]
+Include = /etc/pacman.d/mirrorlist</code></p>
+
+<p>And add these lines at the bottom of the file:<br />
+<code>[archlinuxfr]</code><br />
+<code>SigLevel = Never</code><br />
+<code>Server = https://repo.archlinux.fr/$arch</code></p>
+
+<p>Update the repos&rsquo;s</p>
+
+<pre><code>pacman -Syu
+</code></pre>
+
+<h3 id="user-management">User Management</h3>
+
+<h4 id="set-root-password">Set root password</h4>
+
+<pre><code>passwd
+</code></pre>
+
+<h4 id="create-user">Create user:</h4>
+
+<pre><code>useradd -m -g users -G wheel,storage,power -s /bin/bash &lt;user&gt;
+passwd &lt;user&gt;
+</code></pre>
+
+<h4 id="setup-sudoers">Setup sudoers:</h4>
+
+<pre><code>EDITOR=nano visudo
+</code></pre>
+
+<p>Uncomment this line:
+<code>%wheel ALL=(ALL) ALL</code></p>
+
+<p>Add to the bottom:
+<code>Defaults rootpw</code></p>
+
+<h2 id="installing-some-basic-software">Installing some basic software</h2>
+
+<p>Bash completion:</p>
+
+<pre><code>pacman -S bash-completion
+</code></pre>
+
+<p>Install packages for WiFi:</p>
+
+<pre><code>pacman -S dialog wpa_supplicant wpa_actiond rfkill
+ip link
+systemctl enable netctl-auto@wlp2s0b1
+</code></pre>
+
+<p>Installing the bootloader:</p>
+
+<pre><code>mount -t efivarfs efivarfs /sys/firmware/efi/efivars
+</code></pre>
+
+<pre><code>bootctl install
+</code></pre>
+
+<p>Write long UUID to file for later use</p>
+
+<pre><code>blkid | grep sda2 | cut -f2 -d\&quot; &amp;gt; /boot/loader/entries/arch.conf
+</code></pre>
+
+<p>Create an entry for Arch</p>
+
+<pre><code>nano /boot/loader/entries/arch.conf
+</code></pre>
+
+<p><code>title Arch Linux</code><br />
+<code>linux /vmlinuz-linux</code><br />
+<code>initrd /initramfs-linux.img</code><br />
+<code>options cryptdevice=UUID=&lt;YOUR_UUID&gt;:rootvg:allow-discards root=/dev/mapper/rootvg-root rw</code></p>
+
+<h3 id="install-intel-microcode">Install Intel Microcode:</h3>
+
+<p>This is useful for when you want to be able to receive firmware updates to your CPU.
+You should only follow this step if you run on a Intel CPU.</p>
+
+<pre><code>pacman -S intel-ucode
+</code></pre>
+
+<p>Add the following to your previously created boot entry:<br />
+<code>initrd /intel-ucode.img</code></p>
+
+<pre><code>nano /boot/loader/entries/arch.conf
+</code></pre>
+
+<p>Your final boot entry should look like this:<br />
+<code>title Arch Linux</code><br />
+<code>linux /vmlinuz-linux</code><br />
+<code>initrd /intel-ucode.img</code><br />
+<code>initrd /initramfs-linux.img</code><br />
+<code>options cryptdevice=UUID=&lt;YOUR_UUID&gt;:luks root=/dev/mapper/rootvg-root rw</code></p>
+
+<h3 id="set-required-hooks-for-boot-init">Set required hooks for boot init.</h3>
+
+<p>in <code>/etc/mkinitcpio.conf</code> make sure the following hooks are present, if not add them:<br />
+<code>encrypt</code><br />
+<code>lvm2</code></p>
+
+<p>An example of a complete string of hooks would be:
+<code>base udev autodetect modconf block filesystems keyboard keymap encrypt lvm2 fsck</code></p>
+
+<pre><code> sudo mkinitcpio -p linux
+</code></pre>
+
+<h3 id="finalize">Finalize:</h3>
+
+<pre><code>exit
+umount -R /mnt
+reboot
+</code></pre>
+
+<p>On laptops with touchpad:</p>
+
+<pre><code>sudo pacman -S xf86-input-synaptics
+</code></pre>
+
+<p>Install graphics driver and display server</p>
+
+<pre><code>sudo pacman -S mesa
+sudo pacman -S xorg-server xorg-server-utils xorg-xinit xorg-twm xorg-xclock
+</code></pre>
+
+<h3 id="installing-and-enabling-a-firewall">Installing and enabling a Firewall</h3>
+
+<pre><code>sudo pacman -S ufw
+sudo ufw enable
+</code></pre>
+
+<h3 id="installing-and-enabling-openssh-server">Installing and enabling OpenSSH-Server</h3>
+
+<pre><code>sudo pacman -S openssh
+sudo systemctl start sshd.socket
+</code></pre>
+
+<h4 id="if-you-want-to-have-ssh-running-as-as-service-run-this">If you want to have SSH running as as service run this</h4>
+
+<pre><code>sudo systemctl enable sshd.socket
+</code></pre>
+
+<h4 id="if-needed-make-sure-the-ssh-connection-get-s-through-the-firewall">If needed make sure the SSH connection get&rsquo;s through the Firewall</h4>
+
+<pre><code>sudo ufw allow 22
+</code></pre>
+
+<h3 id="install-awesome-gui-stuff">Install awesome GUI stuff</h3>
+
+<pre><code>sudo pacman -S gnome
+sudo pacman -S gdm
+sudo systemctl enable gdm.service
+sudo pacman -S gnome-tweak-tool gnome-keyring
+sudo pacman -S yaourt
+</code></pre>
+
+<p>Install some funky themes</p>
+
+<pre><code>sudo pacman -S arc-gtk-theme
+</code></pre>
+
+<p>Install some awesome packages</p>
+
+<pre><code>sudo pacman -S file-roller firefox nodejs npm vlc keepass vim git xdotool xsel
+</code></pre>
+
+<hr />
+
+<h2 id="macbook-specific">Macbook Specific:</h2>
+
+<pre><code>sudo pacman -S xf86-video-intel
+</code></pre>
+
+<hr />
+
+<h2 id="after-install-stuff-optional">After install stuff [Optional]:</h2>
+
+<h3 id="terminal-preference">Terminal preference</h3>
+
+<p>See the <code>zsh n00b guide</code></p>
+
+<h3 id="auto-mounting-of-media-data-and-media-games">Auto mounting of <code>/media/data</code> and <code>/media/games</code>.</h3>
+
+<p>First make the folders to mount to:</p>
+
+<pre><code>Sudo mkdir -p /media/data
+Sudo mkdir -p /media/games
+</code></pre>
+
+<h4 id="find-the-proper-uuids">Find the proper UUIDs:</h4>
+
+<pre><code>ls -l /dev/disk/by-uuid
+</code></pre>
+
+<h4 id="then-add-the-uuid-of-desired-drive-to-the-fstab-like-so">Then add the UUID of desired drive to the fstab like so:</h4>
+
+<pre><code>UUID=&lt;your-uuid&gt; /media/data ext4 defaults 0 1
+UUID=&lt;your-uuid&gt; /media/games ext4 defaults 0 1
+</code></pre>
+
+<h3 id="installing-steam-native-runtime">Installing steam native runtime:</h3>
+
+<pre><code>sudo pacman -S steam steam-native-runtime
+</code></pre>
+
+<h3 id="link-keepass-plugins">Link Keepass plugins:</h3>
+
+<pre><code>sudo cp .mozilla/firefox/5i95pb8t.default/extensions/keefox@chris.tomlinson/deps/KeePassRPC.plgx /usr/share/keepass/Plugins/
+</code></pre>
+
+
+  
+
+  
+  <hr>
+  <footer>
+
+  
+    <section>
+    <h4>Share</h4>
+    <nav class="nav sharing-icons">
+      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fexample.org%2fpost%2farch-linux-n00b-guide%2f" title="Share on Facebook"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://plus.google.com/share?url=http%3a%2f%2fexample.org%2fpost%2farch-linux-n00b-guide%2f" title="Share on Google+"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fexample.org%2fpost%2farch-linux-n00b-guide%2f" title="Share on LinkedIn"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://twitter.com/home?status=http%3a%2f%2fexample.org%2fpost%2farch-linux-n00b-guide%2f" title="Tweet this"><span class="fa fa-twitter fa-2x"></span></a>
+    </nav>
+  </section>
+
+  
+
+  
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+  
+  
+  if (window.location.hostname == "localhost")
+    return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'xblackbytesx';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  
+  </footer>
+  
+
+</article> 
+
+
+
+        </div> <!-- /.blog-main -->
+
+        <aside class="col-sm-3 offset-sm-1 blog-sidebar">
+  
+
+  
+
+  
+</aside>
+
+
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+
+    <footer class="blog-footer">
+      <p>
+      
+      Blog template created by <a href="https://twitter.com/mdo">@mdo</a>, ported to Hugo by <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+      
+      </p>
+      <p>
+      <a href="#">Back to top</a>
+      </p>
+    </footer>
+
+  </body>
+
+</html>
