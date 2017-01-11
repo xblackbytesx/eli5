@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns="//www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+    <head>
+
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+        <title>zsh &middot; Explain IT Like I&#39;m 5</title>
+        <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600' type='text/css'>
+        <link rel="stylesheet" href="http://eli5.it//libraries/normalize.5.0.0.css" />
+        
+        <link rel="stylesheet" href="http://eli5.it//css/darkdoc.min.css" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-144-precomposed.png" sizes="144x144" />
+        <link rel="alternate" href="" type="application/rss+xml" title="Explain IT Like I&#39;m 5" />
+    </head>
+    <body class="li-body">
+
+<header class="li-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="sixteen columns">
+                <div class="li-brand li-left">
+                <a href="http://eli5.it/">Explain IT Like I&#39;m 5</a></div>
+                <div class="li-menu li-right">
+                    <span class="li-menu-icon" onclick="javascript:toggle('menu');">&#9776;</span>
+                    <ul id="menu2" class="li-menu-items">
+                        
+                            <li><a href="/series/install-guides"> Install Guides </a></li>
+                        
+                            <li><a href="/categories/linux"> Linux </a></li>
+                        
+                            <li><a href="/categories/tooling"> Tooling </a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="sixteen columns">
+                <ul id="menu" class="li-menu-items li-menu-mobile">
+                    
+                        <li><a href="/series/install-guides"> Install Guides </a></li>
+                    
+                        <li><a href="/categories/linux"> Linux </a></li>
+                    
+                        <li><a href="/categories/tooling"> Tooling </a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="sixteen columns">
+                <article class="li-article">
+                    <header class="li-article-header">
+                        <h1 class="li-article-title">zsh</h1>
+                        <span class="li-article-taxonomies">
+                            
+                                Posted in
+                                
+                                    <a href="http://eli5.it//categories/linux">Linux</a>
+                                
+                                    <a href="http://eli5.it//categories/tooling">Tooling</a>
+                                
+                            
+
+                            
+                        </span>
+                         - 
+                        <time class="li-article-date">Wednesday, January 11, 2017</time>
+                    </header>
+                    <section>
+                        
+
+<h1 id="zsh-n00b-guide">ZSH n00b guide</h1>
+
+<p><strong>A n00b guide for ZSH</strong></p>
+
+<h2 id="install-and-switch-to-zsh">Install and switch to ZSH</h2>
+
+<pre><code>sudo pacman -S zsh zsh-completions
+</code></pre>
+
+<p>Run it once to configure the default settings.</p>
+
+<pre><code>zsh
+</code></pre>
+
+<p>Play around with it and if you like it set as default shell for your user.</p>
+
+<pre><code>chsh -s
+</code></pre>
+
+<h2 id="aliasses">Aliasses</h2>
+
+<p>Make ZSH look for a .aliases file.</p>
+
+<pre><code>echo '' &gt;&gt; .zshrc
+echo 'source $HOME/.aliases' &gt;&gt; .zshrc
+</code></pre>
+
+<p>Add this awesomely useful alias.</p>
+
+<pre><code>echo 'alias ll=&quot;ls -al&quot;' &gt;&gt; .aliases
+</code></pre>
+
+<h2 id="nice-colors-and-vanity-prompt-style">Nice colors and vanity prompt style</h2>
+
+<pre><code>echo '' &gt;&gt; ~/.zshrc
+echo 'autoload -U colors &amp;&amp; colors' &gt;&gt; ~/.zshrc
+echo 'PS1=&quot;%{$fg[green]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$reset_color%}&quot;in&quot; %{$fg[yellow]%}%~ %{$reset_color%}%% &quot;' &gt;&gt; ~/.zshrc
+</code></pre>
+
+                    </section>
+                </article>
+            </div>
+        </div>
+
+        <div class="row li-author">
+    <div class="sixteen columns">
+        Written by <strong>Fabio Bier</strong>
+    </div>
+</div>
+
+
+        <div class="row li-pagination">
+            <div class="eight columns">
+                <div class="li-pagination-previous">
+                    
+                        &nbsp;
+                    
+                </div>
+            </div>
+            <div class="eight columns">
+                <div class="li-pagination-next">
+                    
+                        Older article<br />
+                        <a href="http://eli5.it/linux/install-guide/arch-linux-n00b-guide/"> arch linux n00b guide</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+<footer class="li-page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="sixteen columns">
+                <div class="li-page-footer-legal">
+                    &copy; 2017. All rights reserved. 
+                </div>
+                <div class="li-page-footer-theme">
+                    <span class=""><a href="https://github.com/eliasson/darkdoc/">darkdoc</a> is a theme for <a href="http://hugo.spf13.com">hugo</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script type="text/javascript">
+    <!--
+    function toggle(id) {
+        var e = document.getElementById(id);
+        e.style.display == 'block' ? e.style.display = 'none' : e.style.display = 'block';
+    }
+    
+    </script>
+    <script type="text/javascript">
+    <!--
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', ""]);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    -->
+    </script>
+    </body>
+</html>
+
