@@ -9,11 +9,60 @@
     <atom:link href="http://eli5.it/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>zsh</title>
+      <link>http://eli5.it/linux/tooling/zsh/</link>
+      <pubDate>Wed, 11 Jan 2017 11:13:15 +0100</pubDate>
+      
+      <guid>http://eli5.it/linux/tooling/zsh/</guid>
+      <description>
+
+&lt;h1 id=&#34;zsh-n00b-guide&#34;&gt;ZSH n00b guide&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;A n00b guide for ZSH&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;install-and-switch-to-zsh&#34;&gt;Install and switch to ZSH&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pacman -S zsh zsh-completions
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Run it once to configure the default settings.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;zsh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Play around with it and if you like it set as default shell for your user.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;chsh -s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;aliasses&#34;&gt;Aliasses&lt;/h2&gt;
+
+&lt;p&gt;Make ZSH look for a .aliases file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;echo &#39;&#39; &amp;gt;&amp;gt; .zshrc
+echo &#39;source $HOME/.aliases&#39; &amp;gt;&amp;gt; .zshrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add this awesomely useful alias.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;echo &#39;alias ll=&amp;quot;ls -al&amp;quot;&#39; &amp;gt;&amp;gt; .aliases
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;nice-colors-and-vanity-prompt-style&#34;&gt;Nice colors and vanity prompt style&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;echo &#39;&#39; &amp;gt;&amp;gt; ~/.zshrc
+echo &#39;autoload -U colors &amp;amp;&amp;amp; colors&#39; &amp;gt;&amp;gt; ~/.zshrc
+echo &#39;PS1=&amp;quot;%{$fg[green]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$reset_color%}&amp;quot;in&amp;quot; %{$fg[yellow]%}%~ %{$reset_color%}%% &amp;quot;&#39; &amp;gt;&amp;gt; ~/.zshrc
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>arch linux n00b guide</title>
-      <link>http://eli5.it/post/arch-linux-n00b-guide/</link>
+      <link>http://eli5.it/linux/install-guide/arch-linux-n00b-guide/</link>
       <pubDate>Tue, 10 Jan 2017 00:14:35 +0100</pubDate>
       
-      <guid>http://eli5.it/post/arch-linux-n00b-guide/</guid>
+      <guid>http://eli5.it/linux/install-guide/arch-linux-n00b-guide/</guid>
       <description>
 
 &lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
