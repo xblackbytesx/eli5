@@ -6,8 +6,52 @@
     <description>Recent content in Linuxes on Explain IT Like I&#39;m 5</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 11 Jan 2017 11:13:15 +0100</lastBuildDate>
+    <lastBuildDate>Wed, 11 Jan 2017 15:27:34 +0100</lastBuildDate>
     <atom:link href="http://eli5.it/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>pacman</title>
+      <link>http://eli5.it/linux/tooling/pacman/</link>
+      <pubDate>Wed, 11 Jan 2017 15:27:34 +0100</pubDate>
+      
+      <guid>http://eli5.it/linux/tooling/pacman/</guid>
+      <description>
+
+&lt;h2 id=&#34;installing-a-package&#34;&gt;Installing a package&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pacman -S &amp;lt;package&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;searching-for-a-package&#34;&gt;Searching for a package&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pacman -Ss &amp;lt;description/name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;removing-packages&#34;&gt;Removing packages&lt;/h2&gt;
+
+&lt;p&gt;To remove a single package, leaving all of its dependencies installed:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pacman -R &amp;lt;package&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To remove a package and its dependencies which are not required by any other installed package:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pacman -Rs &amp;lt;package&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;cleaning-the-package-cache&#34;&gt;Cleaning the package cache&lt;/h2&gt;
+
+&lt;p&gt;The built-in option to remove all the cached packages that are not currently installed is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pacman -Sc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To clean the entire cache run this (be careful with this one):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pacman -Scc
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>zsh</title>
