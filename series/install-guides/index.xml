@@ -351,7 +351,12 @@ sudo pacman -S yaourt
 
 &lt;p&gt;Install some awesome packages&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo pacman -S file-roller firefox nodejs npm vlc keepass vim git xdotool xsel
+&lt;pre&gt;&lt;code&gt;sudo pacman -S file-roller firefox nodejs npm vlc keepass vim git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Install some support libraries&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pacman -S xdotool xsel udisks dosfstools
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;hr /&gt;
