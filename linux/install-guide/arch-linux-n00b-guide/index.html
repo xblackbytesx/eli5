@@ -479,13 +479,19 @@ Sudo mkdir -p /media/games
 
 <h4 id="find-the-proper-uuids">Find the proper UUIDs:</h4>
 
-<pre><code>ls -l /dev/disk/by-uuid
+<pre><code>sudo blkid | grep sdb1  
+sudo blkid | grep sdc1
+</code></pre>
+
+<h4 id="install-neccesary-filesystem-drivers-if-needed">Install neccesary filesystem drivers if needed:</h4>
+
+<pre><code>sudo pacman -S ntfs-3g
 </code></pre>
 
 <h4 id="then-add-the-uuid-of-desired-drive-to-the-fstab-like-so">Then add the UUID of desired drive to the fstab like so:</h4>
 
 <pre><code>UUID=&lt;your-uuid&gt; /media/data ext4 defaults 0 1
-UUID=&lt;your-uuid&gt; /media/games ext4 defaults 0 1
+UUID=&lt;your-uuid&gt; /media/games ntfs-3g defaults,discard 0 1
 </code></pre>
 
 <h3 id="installing-steam-native-runtime">Installing steam native runtime:</h3>

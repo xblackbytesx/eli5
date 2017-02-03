@@ -505,13 +505,19 @@ Sudo mkdir -p /media/games
 
 &lt;h4 id=&#34;find-the-proper-uuids&#34;&gt;Find the proper UUIDs:&lt;/h4&gt;
 
-&lt;pre&gt;&lt;code&gt;ls -l /dev/disk/by-uuid
+&lt;pre&gt;&lt;code&gt;sudo blkid | grep sdb1  
+sudo blkid | grep sdc1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;install-neccesary-filesystem-drivers-if-needed&#34;&gt;Install neccesary filesystem drivers if needed:&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pacman -S ntfs-3g
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&#34;then-add-the-uuid-of-desired-drive-to-the-fstab-like-so&#34;&gt;Then add the UUID of desired drive to the fstab like so:&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;UUID=&amp;lt;your-uuid&amp;gt; /media/data ext4 defaults 0 1
-UUID=&amp;lt;your-uuid&amp;gt; /media/games ext4 defaults 0 1
+UUID=&amp;lt;your-uuid&amp;gt; /media/games ntfs-3g defaults,discard 0 1
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;installing-steam-native-runtime&#34;&gt;Installing steam native runtime:&lt;/h3&gt;
