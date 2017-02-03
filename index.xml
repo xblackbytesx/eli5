@@ -449,6 +449,12 @@ sudo pacman -S gnome-tweak-tool gnome-keyring
 sudo pacman -S yaourt
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;Enable NetworkManager&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pacman -S networkmanager  
+sudo systemctl enable NetworkManager.service
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;Install some funky themes&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;sudo pacman -S arc-gtk-theme
