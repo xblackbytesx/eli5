@@ -5,12 +5,12 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
 
-        <title>Install Guides &middot; Explain IT Like I&#39;m 5</title>
+        <title>life without gapps &middot; Explain IT Like I&#39;m 5</title>
         <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600' type='text/css'>
         <link rel="stylesheet" href="http://eli5.it/dist/styles.css" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-144-precomposed.png" sizes="144x144" />
-        <link rel="alternate" href="http://eli5.it/series/install-guides/index.xml" type="application/rss+xml" title="Explain IT Like I&#39;m 5" />
+        <link rel="alternate" href="" type="application/rss+xml" title="Explain IT Like I&#39;m 5" />
         
 
     </head>
@@ -53,18 +53,91 @@
 </header>
 
 
+
+
+
+
     <div class="container">
         <div class="row">
             <div class="sixteen columns">
-                <h1>Install Guides</h1>
-                <ul class="li-article-list">
+                <article class="li-article">
+                    <header class="li-article-header">
+                        <h1 class="li-article-title">life without gapps</h1>
+                        <span class="li-article-taxonomies">
+                            
+                                Posted in
+                                
+                                    <a href="http://eli5.it//categories/android">Android</a>
+                                
+                            
+
+                            
+                        </span>
+                         - 
+                        <time class="li-article-date">Friday, February 24, 2017</time>
+                    </header>
+                    <section>
+                        
+
+<h1 id="life-without-gapps">Life without Gapps</h1>
+
+<h2 id="guesture-typing">Guesture typing</h2>
+
+<p>In order to enjoy guesture typing with the AOSP keyboard you need to copy two (proprietary) libs into your <code>system/lib64</code>. This is if you&rsquo;re actually on a arm64 enabled device of course, otherwise you copy it to <code>system/lib</code></p>
+
+<p>The following require libs can be obtained from the OpenGapps Github repository.</p>
+
+<p><a href="https://github.com/opengapps/arm64/raw/master/lib64/23/libjni_keyboarddecoder.so">libjni_keyboarddecoder</a><br />
+<a href="https://github.com/opengapps/arm64/raw/master/lib64/23/libjni_latinimegoogle.so">libjni_latinimegoogle</a></p>
+
+<p>After you&rsquo;ve copied these to the appropriate folder be sure to set the correct permissions. <code>-rw-r--r--</code> or for the numeric types amongst you <code>644</code>.</p>
+
+<p>Reboot and you&rsquo;re all set!</p>
+
+<p>Mind you, this is not for the purists, these are proprietary binaries and can therefore never be completely trusted.</p>
+
+<hr />
+
+<h2 id="location-services">Location services</h2>
+
+<p>As far as location services go you&rsquo;re left with</p>
+
+<ul>
+<li>UnifiedNlp (no GAPPS)</li>
+<li>microG Services Framework proxy</li>
+<li>Fakestore</li>
+</ul>
+
+<p>Move <code>/data/app/gms</code> to <code>/system/priv-app</code>
+Set permissions of the main dir to <code>drwxr-xr-x</code> <code>755</code></p>
+
+                    </section>
+                </article>
+            </div>
+        </div>
+
+        <div class="row li-author">
+    <div class="sixteen columns">
+        Written by <strong>Fabio Bier</strong>
+    </div>
+</div>
+
+
+        <div class="row li-pagination">
+            <div class="eight columns">
+                <div class="li-pagination-previous">
                     
-                        <li>
-                            <time class="li-article-date">January, 10, 2017</time>
-                            <h4><a href="http://eli5.it/linux/install-guide/arch-linux-n00b-guide/">arch linux n00b guide</a></h4>
-                        </li>
+                        &nbsp;
                     
-                </ul>
+                </div>
+            </div>
+            <div class="eight columns">
+                <div class="li-pagination-next">
+                    
+                        Older article<br />
+                        <a href="http://eli5.it/linux/tooling/pacman/"> pacman</a>
+                    
+                </div>
             </div>
         </div>
     </div>
