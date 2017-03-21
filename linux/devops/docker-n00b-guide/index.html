@@ -74,13 +74,11 @@
                     <section>
                         
 
-<p>Docker n00b guide</p>
-
-<h1 id="installation">Installation:</h1>
+<h2 id="installation">Installation:</h2>
 
 <p><code>sudo pacman -S docker docker-compose</code></p>
 
-<h1 id="start-deamon">Start deamon</h1>
+<h2 id="start-deamon">Start deamon</h2>
 
 <p><code>sudo systemctl start docker</code><br />
 <code>sudo systemclt enable docker</code></p>
@@ -96,7 +94,7 @@ uwsgi.ini
 uwsgi_params
 ssh dir with private key -->
 
-<h1 id="common-commands">Common commands</h1>
+<h2 id="common-commands">Common commands</h2>
 
 <h3 id="build-a-container">Build a container</h3>
 
@@ -146,7 +144,7 @@ Example /start_app_with_docker.sh
 `    -p 0.0.0.0:81:80 \`  
 `    <user>/styleguide-example` -->
 
-<h1 id="removing-cruft">Removing cruft</h1>
+<h2 id="removing-cruft">Removing cruft</h2>
 
 <p><code>sudo docker rm $(sudo docker ps -a)</code><br />
 <code>sudo docker rmi $(sudo docker images -q)</code></p>

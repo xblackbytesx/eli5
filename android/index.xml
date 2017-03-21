@@ -17,8 +17,6 @@
       <guid>http://eli5.it/android/life-without-gapps/</guid>
       <description>
 
-&lt;h1 id=&#34;life-without-gapps&#34;&gt;Life without Gapps&lt;/h1&gt;
-
 &lt;h2 id=&#34;guesture-typing&#34;&gt;Guesture typing&lt;/h2&gt;
 
 &lt;p&gt;In order to enjoy guesture typing with the AOSP keyboard you need to copy two (proprietary) libs into your &lt;code&gt;system/lib64&lt;/code&gt;. This is if you&amp;rsquo;re actually on a arm64 enabled device of course, otherwise you copy it to &lt;code&gt;system/lib&lt;/code&gt;&lt;/p&gt;

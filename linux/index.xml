@@ -17,13 +17,11 @@
       <guid>http://eli5.it/linux/devops/docker-n00b-guide/</guid>
       <description>
 
-&lt;p&gt;Docker n00b guide&lt;/p&gt;
-
-&lt;h1 id=&#34;installation&#34;&gt;Installation:&lt;/h1&gt;
+&lt;h2 id=&#34;installation&#34;&gt;Installation:&lt;/h2&gt;
 
 &lt;p&gt;&lt;code&gt;sudo pacman -S docker docker-compose&lt;/code&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;start-deamon&#34;&gt;Start deamon&lt;/h1&gt;
+&lt;h2 id=&#34;start-deamon&#34;&gt;Start deamon&lt;/h2&gt;
 
 &lt;p&gt;&lt;code&gt;sudo systemctl start docker&lt;/code&gt;&lt;br /&gt;
 &lt;code&gt;sudo systemclt enable docker&lt;/code&gt;&lt;/p&gt;
@@ -39,7 +37,7 @@ uwsgi.ini
 uwsgi_params
 ssh dir with private key --&gt;
 
-&lt;h1 id=&#34;common-commands&#34;&gt;Common commands&lt;/h1&gt;
+&lt;h2 id=&#34;common-commands&#34;&gt;Common commands&lt;/h2&gt;
 
 &lt;h3 id=&#34;build-a-container&#34;&gt;Build a container&lt;/h3&gt;
 
@@ -89,7 +87,7 @@ Example /start_app_with_docker.sh
 `    -p 0.0.0.0:81:80 \`  
 `    &lt;user&gt;/styleguide-example` --&gt;
 
-&lt;h1 id=&#34;removing-cruft&#34;&gt;Removing cruft&lt;/h1&gt;
+&lt;h2 id=&#34;removing-cruft&#34;&gt;Removing cruft&lt;/h2&gt;
 
 &lt;p&gt;&lt;code&gt;sudo docker rm $(sudo docker ps -a)&lt;/code&gt;&lt;br /&gt;
 &lt;code&gt;sudo docker rmi $(sudo docker images -q)&lt;/code&gt;&lt;/p&gt;
