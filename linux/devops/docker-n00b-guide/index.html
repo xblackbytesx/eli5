@@ -5,12 +5,12 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
 
-        <title>Linuxes &middot; Explain IT Like I&#39;m 5</title>
+        <title>docker n00b guide &middot; Explain IT Like I&#39;m 5</title>
         <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600' type='text/css'>
         <link rel="stylesheet" href="http://eli5.it/dist/styles.css" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-144-precomposed.png" sizes="144x144" />
-        <link rel="alternate" href="http://eli5.it/linux/index.xml" type="application/rss+xml" title="Explain IT Like I&#39;m 5" />
+        <link rel="alternate" href="" type="application/rss+xml" title="Explain IT Like I&#39;m 5" />
         
 
     </head>
@@ -53,33 +53,131 @@
 </header>
 
 
+
+
+
+
     <div class="container">
         <div class="row">
             <div class="sixteen columns">
-                <h1>Linuxes</h1>
-                <ul class="li-article-list">
+                <article class="li-article">
+                    <header class="li-article-header">
+                        <h1 class="li-article-title">docker n00b guide</h1>
+                        <span class="li-article-taxonomies">
+                            
+
+                            
+                        </span>
+                        
+                        <time class="li-article-date">Tuesday, March 21, 2017</time>
+                    </header>
+                    <section>
+                        
+
+<p>Docker n00b guide</p>
+
+<h1 id="installation">Installation:</h1>
+
+<p><code>sudo pacman -S docker docker-compose</code></p>
+
+<h1 id="start-deamon">Start deamon</h1>
+
+<p><code>sudo systemctl start docker</code><br />
+<code>sudo systemclt enable docker</code></p>
+
+<!-- # Configuration
+Files you need
+Dockerfile
+.dockerignore
+nginx-app.conf
+supervisor-app.conf
+start.sh
+uwsgi.ini
+uwsgi_params
+ssh dir with private key -->
+
+<h1 id="common-commands">Common commands</h1>
+
+<h3 id="build-a-container">Build a container</h3>
+
+<p><code>sudo docker build -t &lt;docker_name&gt; .</code><br />
+<code>sudo service docker start</code><br />
+<code>sudo docker run -d -P &lt;docker_name&gt;</code></p>
+
+<p>OPTIONAL - Name your own docker instance name:
+sudo docker run -d &ndash;name <instance_name> -p 81:80 <docker_name></p>
+
+<h3 id="show-docker-instances-with-names">Show Docker instances with names</h3>
+
+<p><code>sudo docker ps</code></p>
+
+<h3 id="open-the-bash-shell">Open the bash shell</h3>
+
+<p><code>sudo docker exec -it &lt;instance_name&gt; bash</code></p>
+
+<h3 id="stop-docker-instance">Stop Docker instance</h3>
+
+<p><code>sudo docker stop &lt;instance_name&gt;</code>
+
+<!-- # Publishing --></p>
+
+<!-- Dockerhub (hosted)
+Create an account on Dockerhub
+
+From the root of your project (where your Dockerfile is stored) run these commands
+sudo docker login
+sudo docker build -t <user>/styleguide-example .
+sudo docker push <user>/styleguide-example
+
+On the fresh server now run the following:
+docker pull <user>/styleguide-example
+
+Private registry (DIY)
+Build your own private registry
+
+Example /start_app_with_docker.sh  
+`#! /bin/bash`  
+
+`docker run -d --name styleguide_example --restart=always \`  
+`    -e GIT_REPO=<YOUR_GIT_REPO> \`  
+`    -e GIT_BRANCH=<YOUR_BRANCH> \`  
+`    -e DEBUG=True \`  
+`    -e SECRET_KEY='<YOUR_SECRET_KEY>' \`  
+`    -p 0.0.0.0:81:80 \`  
+`    <user>/styleguide-example` -->
+
+<h1 id="removing-cruft">Removing cruft</h1>
+
+<p><code>sudo docker rm $(sudo docker ps -a)</code><br />
+<code>sudo docker rmi $(sudo docker images -q)</code></p>
+
+                    </section>
+                </article>
+            </div>
+        </div>
+
+        <div class="row li-author">
+    <div class="sixteen columns">
+        Written by <strong>Fabio Bier</strong>
+    </div>
+</div>
+
+
+        <div class="row li-pagination">
+            <div class="eight columns">
+                <div class="li-pagination-previous">
                     
-                        <li>
-                            <time class="li-article-date">March, 21, 2017</time>
-                            <h4><a href="http://eli5.it/linux/devops/docker-n00b-guide/">docker n00b guide</a></h4>
-                        </li>
+                        &nbsp;
                     
-                        <li>
-                            <time class="li-article-date">January, 11, 2017</time>
-                            <h4><a href="http://eli5.it/linux/tooling/pacman/">pacman</a></h4>
-                        </li>
+                </div>
+            </div>
+            <div class="eight columns">
+                <div class="li-pagination-next">
                     
-                        <li>
-                            <time class="li-article-date">January, 11, 2017</time>
-                            <h4><a href="http://eli5.it/linux/tooling/zsh/">zsh</a></h4>
-                        </li>
+                        Older article<br />
+                        <a href="http://eli5.it/android/life-without-gapps/"> life without gapps</a>
                     
-                        <li>
-                            <time class="li-article-date">January, 10, 2017</time>
-                            <h4><a href="http://eli5.it/linux/install-guide/arch-linux-n00b-guide/">arch linux n00b guide</a></h4>
-                        </li>
-                    
-                </ul>
+                </div>
             </div>
         </div>
     </div>

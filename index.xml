@@ -6,8 +6,95 @@
     <description>Recent content on Explain IT Like I&#39;m 5</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 24 Feb 2017 21:47:40 +0100</lastBuildDate>
+    <lastBuildDate>Tue, 21 Mar 2017 16:03:03 +0100</lastBuildDate>
     <atom:link href="http://eli5.it/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>docker n00b guide</title>
+      <link>http://eli5.it/linux/devops/docker-n00b-guide/</link>
+      <pubDate>Tue, 21 Mar 2017 16:03:03 +0100</pubDate>
+      
+      <guid>http://eli5.it/linux/devops/docker-n00b-guide/</guid>
+      <description>
+
+&lt;p&gt;Docker n00b guide&lt;/p&gt;
+
+&lt;h1 id=&#34;installation&#34;&gt;Installation:&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;sudo pacman -S docker docker-compose&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;start-deamon&#34;&gt;Start deamon&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;sudo systemctl start docker&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo systemclt enable docker&lt;/code&gt;&lt;/p&gt;
+
+&lt;!-- # Configuration
+Files you need
+Dockerfile
+.dockerignore
+nginx-app.conf
+supervisor-app.conf
+start.sh
+uwsgi.ini
+uwsgi_params
+ssh dir with private key --&gt;
+
+&lt;h1 id=&#34;common-commands&#34;&gt;Common commands&lt;/h1&gt;
+
+&lt;h3 id=&#34;build-a-container&#34;&gt;Build a container&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;sudo docker build -t &amp;lt;docker_name&amp;gt; .&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo service docker start&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo docker run -d -P &amp;lt;docker_name&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;OPTIONAL - Name your own docker instance name:
+sudo docker run -d &amp;ndash;name &lt;instance_name&gt; -p 81:80 &lt;docker_name&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;show-docker-instances-with-names&#34;&gt;Show Docker instances with names&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;sudo docker ps&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;open-the-bash-shell&#34;&gt;Open the bash shell&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;sudo docker exec -it &amp;lt;instance_name&amp;gt; bash&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;stop-docker-instance&#34;&gt;Stop Docker instance&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;sudo docker stop &amp;lt;instance_name&amp;gt;&lt;/code&gt;
+
+&lt;!-- # Publishing --&gt;&lt;/p&gt;
+
+&lt;!-- Dockerhub (hosted)
+Create an account on Dockerhub
+
+From the root of your project (where your Dockerfile is stored) run these commands
+sudo docker login
+sudo docker build -t &lt;user&gt;/styleguide-example .
+sudo docker push &lt;user&gt;/styleguide-example
+
+On the fresh server now run the following:
+docker pull &lt;user&gt;/styleguide-example
+
+Private registry (DIY)
+Build your own private registry
+
+Example /start_app_with_docker.sh  
+`#! /bin/bash`  
+
+`docker run -d --name styleguide_example --restart=always \`  
+`    -e GIT_REPO=&lt;YOUR_GIT_REPO&gt; \`  
+`    -e GIT_BRANCH=&lt;YOUR_BRANCH&gt; \`  
+`    -e DEBUG=True \`  
+`    -e SECRET_KEY=&#39;&lt;YOUR_SECRET_KEY&gt;&#39; \`  
+`    -p 0.0.0.0:81:80 \`  
+`    &lt;user&gt;/styleguide-example` --&gt;
+
+&lt;h1 id=&#34;removing-cruft&#34;&gt;Removing cruft&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;sudo docker rm $(sudo docker ps -a)&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo docker rmi $(sudo docker images -q)&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>life without gapps</title>
