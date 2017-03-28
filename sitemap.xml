@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://eli5.it/internet/publishing/ghost-blog-n00b-guide/</loc>
+    <lastmod>2017-03-28T13:55:27+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://eli5.it/linux/devops/docker-n00b-guide/</loc>
     <lastmod>2017-03-21T16:03:03+01:00</lastmod>
   </url>
@@ -45,13 +50,19 @@
   
   <url>
     <loc>http://eli5.it/</loc>
-    <lastmod>2017-03-21T16:03:03+01:00</lastmod>
+    <lastmod>2017-03-28T13:55:27+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://eli5.it/series/install-guides/</loc>
     <lastmod>2017-01-10T00:14:35+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://eli5.it/internet/</loc>
+    <lastmod>2017-03-28T13:55:27+02:00</lastmod>
     <priority>0</priority>
   </url>
   

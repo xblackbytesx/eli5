@@ -62,6 +62,27 @@
                         <div class="li-article">
                             <article>
     <header>
+        <h2><a href="http://eli5.it/internet/publishing/ghost-blog-n00b-guide/">ghost blog n00b guide </a></h2>
+        <time class="li-article-date">Tuesday, March 28, 2017</time>
+    </header>
+    <section class="li-article-section">
+        Basic setup curl -L https://ghost.org/zip/ghost-latest.zip -o ghost.zip
+unzip -uo ghost.zip -d ghost
+cd ghost &amp;&amp; npm install --production
+Running on production Install PM2 server sudo npm install pm2 -g
+Configure the app In your ghost folder create a config.json file with the following content:
+{ &quot;apps&quot;: [ { &quot;name&quot;: &quot;ghost&quot;, &quot;script&quot;: &quot;npm&quot;, &quot;args&quot;: &quot;start --production&quot; } ] }  Start the server pm2 start config.json
+    </section>
+    <footer>
+        <a href='http://eli5.it/internet/publishing/ghost-blog-n00b-guide/'>More</a>
+    </footer>
+</article>
+
+                        </div>
+                    
+                        <div class="li-article">
+                            <article>
+    <header>
         <h2><a href="http://eli5.it/linux/devops/docker-n00b-guide/">docker n00b guide </a></h2>
         <time class="li-article-date">Tuesday, March 21, 2017</time>
     </header>

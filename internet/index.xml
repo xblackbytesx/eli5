@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Internets on Explain IT Like I&#39;m 5</title>
+    <link>http://eli5.it/internet/index.xml</link>
+    <description>Recent content in Internets on Explain IT Like I&#39;m 5</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 28 Mar 2017 13:55:27 +0200</lastBuildDate>
+    <atom:link href="http://eli5.it/internet/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>ghost blog n00b guide</title>
+      <link>http://eli5.it/internet/publishing/ghost-blog-n00b-guide/</link>
+      <pubDate>Tue, 28 Mar 2017 13:55:27 +0200</pubDate>
+      
+      <guid>http://eli5.it/internet/publishing/ghost-blog-n00b-guide/</guid>
+      <description>
+
+&lt;h1 id=&#34;basic-setup&#34;&gt;Basic setup&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;curl -L https://ghost.org/zip/ghost-latest.zip -o ghost.zip&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;unzip -uo ghost.zip -d ghost&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;cd ghost &amp;amp;&amp;amp; npm install --production&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;running-on-production&#34;&gt;Running on production&lt;/h1&gt;
+
+&lt;h3 id=&#34;install-pm2-server&#34;&gt;Install PM2 server&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;sudo npm install pm2 -g&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;configure-the-app&#34;&gt;Configure the app&lt;/h3&gt;
+
+&lt;p&gt;In your ghost folder create a config.json file with the following content:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;apps&amp;quot;: [
+    {
+      &amp;quot;name&amp;quot;: &amp;quot;ghost&amp;quot;,
+      &amp;quot;script&amp;quot;: &amp;quot;npm&amp;quot;,
+      &amp;quot;args&amp;quot;: &amp;quot;start --production&amp;quot;
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;start-the-server&#34;&gt;Start the server&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;pm2 start config.json&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
