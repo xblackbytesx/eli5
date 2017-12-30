@@ -2,12 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Explain IT Like I&#39;m 5</title>
-    <link>http://eli5.it/index.xml</link>
+    <link>http://eli5.it/</link>
     <description>Recent content on Explain IT Like I&#39;m 5</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 28 Mar 2017 13:55:27 +0200</lastBuildDate>
-    <atom:link href="http://eli5.it/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://eli5.it/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>ghost blog n00b guide</title>
@@ -15,41 +17,12 @@
       <pubDate>Tue, 28 Mar 2017 13:55:27 +0200</pubDate>
       
       <guid>http://eli5.it/internet/publishing/ghost-blog-n00b-guide/</guid>
-      <description>
-
-&lt;h1 id=&#34;basic-setup&#34;&gt;Basic setup&lt;/h1&gt;
-
-&lt;p&gt;&lt;code&gt;curl -L https://ghost.org/zip/ghost-latest.zip -o ghost.zip&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;unzip -uo ghost.zip -d ghost&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;cd ghost &amp;amp;&amp;amp; npm install --production&lt;/code&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;running-on-production&#34;&gt;Running on production&lt;/h1&gt;
-
-&lt;h3 id=&#34;install-pm2-server&#34;&gt;Install PM2 server&lt;/h3&gt;
-
-&lt;p&gt;&lt;code&gt;sudo npm install pm2 -g&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;configure-the-app&#34;&gt;Configure the app&lt;/h3&gt;
-
-&lt;p&gt;In your ghost folder create a config.json file with the following content:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{
-  &amp;quot;apps&amp;quot;: [
-    {
-      &amp;quot;name&amp;quot;: &amp;quot;ghost&amp;quot;,
-      &amp;quot;script&amp;quot;: &amp;quot;npm&amp;quot;,
-      &amp;quot;args&amp;quot;: &amp;quot;start --production&amp;quot;
-    }
-  ]
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;start-the-server&#34;&gt;Start the server&lt;/h3&gt;
-
-&lt;p&gt;&lt;code&gt;pm2 start config.json&lt;/code&gt;&lt;/p&gt;
-</description>
+      <description>Basic setup curl -L https://ghost.org/zip/ghost-latest.zip -o ghost.zip
+unzip -uo ghost.zip -d ghost
+cd ghost &amp;amp;&amp;amp; npm install --production
+Running on production Install PM2 server sudo npm install pm2 -g
+Configure the app In your ghost folder create a config.json file with the following content:
+{ &amp;quot;apps&amp;quot;: [ { &amp;quot;name&amp;quot;: &amp;quot;ghost&amp;quot;, &amp;quot;script&amp;quot;: &amp;quot;npm&amp;quot;, &amp;quot;args&amp;quot;: &amp;quot;start --production&amp;quot; } ] }  Start the server pm2 start config.json</description>
     </item>
     
     <item>
@@ -58,83 +31,15 @@
       <pubDate>Tue, 21 Mar 2017 16:03:03 +0100</pubDate>
       
       <guid>http://eli5.it/linux/devops/docker-n00b-guide/</guid>
-      <description>
-
-&lt;h2 id=&#34;installation&#34;&gt;Installation:&lt;/h2&gt;
-
-&lt;p&gt;&lt;code&gt;sudo pacman -S docker docker-compose&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;start-deamon&#34;&gt;Start deamon&lt;/h2&gt;
-
-&lt;p&gt;&lt;code&gt;sudo systemctl start docker&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;sudo systemclt enable docker&lt;/code&gt;&lt;/p&gt;
-
-&lt;!-- # Configuration
-Files you need
-Dockerfile
-.dockerignore
-nginx-app.conf
-supervisor-app.conf
-start.sh
-uwsgi.ini
-uwsgi_params
-ssh dir with private key --&gt;
-
-&lt;h2 id=&#34;common-commands&#34;&gt;Common commands&lt;/h2&gt;
-
-&lt;h3 id=&#34;build-a-container&#34;&gt;Build a container&lt;/h3&gt;
-
-&lt;p&gt;&lt;code&gt;sudo docker build -t &amp;lt;docker_name&amp;gt; .&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;sudo service docker start&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;sudo docker run -d -P &amp;lt;docker_name&amp;gt;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;OPTIONAL - Name your own docker instance name:
-sudo docker run -d &amp;ndash;name &lt;instance_name&gt; -p 81:80 &lt;docker_name&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;show-docker-instances-with-names&#34;&gt;Show Docker instances with names&lt;/h3&gt;
-
-&lt;p&gt;&lt;code&gt;sudo docker ps&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;open-the-bash-shell&#34;&gt;Open the bash shell&lt;/h3&gt;
-
-&lt;p&gt;&lt;code&gt;sudo docker exec -it &amp;lt;instance_name&amp;gt; bash&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;stop-docker-instance&#34;&gt;Stop Docker instance&lt;/h3&gt;
-
-&lt;p&gt;&lt;code&gt;sudo docker stop &amp;lt;instance_name&amp;gt;&lt;/code&gt;
-
-&lt;!-- # Publishing --&gt;&lt;/p&gt;
-
-&lt;!-- Dockerhub (hosted)
-Create an account on Dockerhub
-
-From the root of your project (where your Dockerfile is stored) run these commands
-sudo docker login
-sudo docker build -t &lt;user&gt;/styleguide-example .
-sudo docker push &lt;user&gt;/styleguide-example
-
-On the fresh server now run the following:
-docker pull &lt;user&gt;/styleguide-example
-
-Private registry (DIY)
-Build your own private registry
-
-Example /start_app_with_docker.sh  
-`#! /bin/bash`  
-
-`docker run -d --name styleguide_example --restart=always \`  
-`    -e GIT_REPO=&lt;YOUR_GIT_REPO&gt; \`  
-`    -e GIT_BRANCH=&lt;YOUR_BRANCH&gt; \`  
-`    -e DEBUG=True \`  
-`    -e SECRET_KEY=&#39;&lt;YOUR_SECRET_KEY&gt;&#39; \`  
-`    -p 0.0.0.0:81:80 \`  
-`    &lt;user&gt;/styleguide-example` --&gt;
-
-&lt;h2 id=&#34;removing-cruft&#34;&gt;Removing cruft&lt;/h2&gt;
-
-&lt;p&gt;&lt;code&gt;sudo docker rm $(sudo docker ps -a)&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;sudo docker rmi $(sudo docker images -q)&lt;/code&gt;&lt;/p&gt;
-</description>
+      <description>Installation: sudo pacman -S docker docker-compose
+Start deamon sudo systemctl start docker
+sudo systemclt enable docker
+Common commands Build a container sudo docker build -t &amp;lt;docker_name&amp;gt; .
+sudo service docker start
+sudo docker run -d -P &amp;lt;docker_name&amp;gt;
+OPTIONAL - Name your own docker instance name: sudo docker run -d &amp;ndash;name  -p 81:80 
+Show Docker instances with names sudo docker ps
+Open the bash shell sudo docker exec -it &amp;lt;instance_name&amp;gt; bash</description>
     </item>
     
     <item>
@@ -143,38 +48,11 @@ Example /start_app_with_docker.sh
       <pubDate>Fri, 24 Feb 2017 21:47:40 +0100</pubDate>
       
       <guid>http://eli5.it/android/life-without-gapps/</guid>
-      <description>
-
-&lt;h2 id=&#34;guesture-typing&#34;&gt;Guesture typing&lt;/h2&gt;
-
-&lt;p&gt;In order to enjoy guesture typing with the AOSP keyboard you need to copy two (proprietary) libs into your &lt;code&gt;system/lib64&lt;/code&gt;. This is if you&amp;rsquo;re actually on a arm64 enabled device of course, otherwise you copy it to &lt;code&gt;system/lib&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;The following require libs can be obtained from the OpenGapps Github repository.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/opengapps/arm64/raw/master/lib64/23/libjni_keyboarddecoder.so&#34;&gt;libjni_keyboarddecoder&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&#34;https://github.com/opengapps/arm64/raw/master/lib64/23/libjni_latinimegoogle.so&#34;&gt;libjni_latinimegoogle&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;After you&amp;rsquo;ve copied these to the appropriate folder be sure to set the correct permissions. &lt;code&gt;-rw-r--r--&lt;/code&gt; or for the numeric types amongst you &lt;code&gt;644&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Reboot and you&amp;rsquo;re all set!&lt;/p&gt;
-
-&lt;p&gt;Mind you, this is not for the purists, these are proprietary binaries and can therefore never be completely trusted.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;location-services&#34;&gt;Location services&lt;/h2&gt;
-
-&lt;p&gt;As far as location services go you&amp;rsquo;re left with&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;UnifiedNlp (no GAPPS)&lt;/li&gt;
-&lt;li&gt;microG Services Framework proxy&lt;/li&gt;
-&lt;li&gt;Fakestore&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Move &lt;code&gt;/data/app/gms&lt;/code&gt; to &lt;code&gt;/system/priv-app&lt;/code&gt;
-Set permissions of the main dir to &lt;code&gt;drwxr-xr-x&lt;/code&gt; &lt;code&gt;755&lt;/code&gt;&lt;/p&gt;
-</description>
+      <description>Guesture typing In order to enjoy guesture typing with the AOSP keyboard you need to copy two (proprietary) libs into your system/lib64. This is if you&amp;rsquo;re actually on a arm64 enabled device of course, otherwise you copy it to system/lib
+The following require libs can be obtained from the OpenGapps Github repository.
+libjni_keyboarddecoder
+libjni_latinimegoogle
+After you&amp;rsquo;ve copied these to the appropriate folder be sure to set the correct permissions. -rw-r--r-- or for the numeric types amongst you 644.</description>
     </item>
     
     <item>
@@ -183,42 +61,9 @@ Set permissions of the main dir to &lt;code&gt;drwxr-xr-x&lt;/code&gt; &lt;code&
       <pubDate>Wed, 11 Jan 2017 15:27:34 +0100</pubDate>
       
       <guid>http://eli5.it/linux/tooling/pacman/</guid>
-      <description>
-
-&lt;h2 id=&#34;installing-a-package&#34;&gt;Installing a package&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -S &amp;lt;package&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;searching-for-a-package&#34;&gt;Searching for a package&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -Ss &amp;lt;description/name&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;removing-packages&#34;&gt;Removing packages&lt;/h2&gt;
-
-&lt;p&gt;To remove a single package, leaving all of its dependencies installed:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -R &amp;lt;package&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To remove a package and its dependencies which are not required by any other installed package:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -Rs &amp;lt;package&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;cleaning-the-package-cache&#34;&gt;Cleaning the package cache&lt;/h2&gt;
-
-&lt;p&gt;The built-in option to remove all the cached packages that are not currently installed is:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -Sc
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To clean the entire cache run this (be careful with this one):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -Scc
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <description>Installing a package sudo pacman -S &amp;lt;package&amp;gt;  Searching for a package sudo pacman -Ss &amp;lt;description/name&amp;gt;  Removing packages To remove a single package, leaving all of its dependencies installed:
+sudo pacman -R &amp;lt;package&amp;gt;  To remove a package and its dependencies which are not required by any other installed package:
+sudo pacman -Rs &amp;lt;package&amp;gt;  Cleaning the package cache The built-in option to remove all the cached packages that are not currently installed is:</description>
     </item>
     
     <item>
@@ -227,58 +72,11 @@ Set permissions of the main dir to &lt;code&gt;drwxr-xr-x&lt;/code&gt; &lt;code&
       <pubDate>Wed, 11 Jan 2017 11:13:15 +0100</pubDate>
       
       <guid>http://eli5.it/linux/tooling/zsh/</guid>
-      <description>
-
-&lt;h2 id=&#34;install-and-switch-to-zsh&#34;&gt;Install and switch to ZSH&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -S zsh zsh-completions
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Run it once to configure the default settings.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;zsh
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;install-antigen-for-advanced-plugin-management&#34;&gt;Install Antigen for advanced plugin management&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;yaourt -S antigen-git
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Add the following source to your &lt;code&gt;~/.zshrc&lt;/code&gt; file:&lt;br /&gt;
-&lt;code&gt;source /usr/share/zsh/scripts/antigen/antigen.zsh&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Add some awesome plugins like Git support and Syntax hightlighting&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# Load the oh-my-zsh&#39;s library.
-antigen use oh-my-zsh
-
-# Bundles from the default repo (robbyrussell&#39;s oh-my-zsh).
-antigen bundle git
-
-# Syntax highlighting bundle.
-antigen bundle zsh-users/zsh-syntax-highlighting
-
-# Load the theme.
-antigen theme af-magic
-
-# Tell antigen that you&#39;re done.
-antigen apply
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Play around with it and if you like it set as default shell for your user.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;chsh -s $(which zsh)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;aliasses&#34;&gt;Aliasses&lt;/h2&gt;
-
-&lt;p&gt;Make ZSH look for a .aliases file.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;echo &#39;&#39; &amp;gt;&amp;gt; .zshrc
-echo &#39;source $HOME/.aliases&#39; &amp;gt;&amp;gt; .zshrc
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <description>Install and switch to ZSH sudo pacman -S zsh zsh-completions  Run it once to configure the default settings.
+zsh  Install Antigen for advanced plugin management yaourt -S antigen-git  Add the following source to your ~/.zshrc file:
+source /usr/share/zsh/scripts/antigen/antigen.zsh
+Add some awesome plugins like Git support and Syntax hightlighting
+# Load the oh-my-zsh&#39;s library. antigen use oh-my-zsh # Bundles from the default repo (robbyrussell&#39;s oh-my-zsh). antigen bundle git # Syntax highlighting bundle.</description>
     </item>
     
     <item>
@@ -287,417 +85,8 @@ echo &#39;source $HOME/.aliases&#39; &amp;gt;&amp;gt; .zshrc
       <pubDate>Tue, 10 Jan 2017 00:14:35 +0100</pubDate>
       
       <guid>http://eli5.it/linux/install-guide/arch-linux-n00b-guide/</guid>
-      <description>
-
-&lt;p&gt;&lt;img src=&#34;http://eli5.it/img/arch-linux-desktop.jpg&#34; alt=&#34;Arch Linux&#34; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
-
-&lt;h3 id=&#34;check-internet-connection&#34;&gt;Check internet connection&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;ping -c 3 www.google.com
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;if-needed-try-connecting-via-wifi&#34;&gt;If needed try connecting via WiFi&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;wifi-menu
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;check-efi-vars-present&#34;&gt;Check EFI vars present&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;efivar -l
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;main-installation&#34;&gt;Main installation&lt;/h2&gt;
-
-&lt;h3 id=&#34;set-system-time-using-ntp&#34;&gt;Set system time using NTP:&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;timedatectl set-ntp true
-timedatectl status
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;partitioning&#34;&gt;Partitioning&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;TIP:&lt;/strong&gt; Leave a 128MiB empty ‘gap’ partition in between your ‘other os’ and your new partition.&lt;/p&gt;
-
-&lt;h4 id=&#34;zap-all-data-on-disk-and-create-a-new-gpt-table&#34;&gt;Zap all data on disk and create a new GPT table.&lt;/h4&gt;
-
-&lt;p&gt;Show current partition table&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;lsblk
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;NOTE: X represents your drive mountpoint. mine is &lt;code&gt;sda&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;gdisk /dev/sdX
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;o&lt;/code&gt; # Create a new empty GUID partition table (GPT)&lt;br /&gt;
-&lt;code&gt;y&lt;/code&gt; # Confirm&lt;/p&gt;
-
-&lt;p&gt;EFI System Partition (ESP)&lt;br /&gt;
-&lt;code&gt;n&lt;/code&gt; # Add a new partition&lt;br /&gt;
-&lt;code&gt;1&lt;/code&gt; # Partition number&lt;br /&gt;
-&lt;code&gt;[Return]&lt;/code&gt; # First sector&lt;br /&gt;
-&lt;code&gt;+512M&lt;/code&gt; # Last sector = size&lt;br /&gt;
-&lt;code&gt;ef00&lt;/code&gt; # Partition type = EFI System&lt;/p&gt;
-
-&lt;p&gt;LUKS container&lt;br /&gt;
-&lt;code&gt;n&lt;/code&gt; # Add a new partition&lt;br /&gt;
-&lt;code&gt;2&lt;/code&gt; # Partition number&lt;br /&gt;
-&lt;code&gt;[Return]&lt;/code&gt; # First sector&lt;br /&gt;
-&lt;code&gt;[Return]&lt;/code&gt; # Last sector = Use remaining space&lt;br /&gt;
-&lt;code&gt;8e00&lt;/code&gt; # Partition type = Linux LVM&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;p&lt;/code&gt; # Check partitions&lt;br /&gt;
-&lt;code&gt;w&lt;/code&gt; # Write changes to disk and exit&lt;br /&gt;
-&lt;code&gt;y&lt;/code&gt; # Confirm&lt;/p&gt;
-
-&lt;p&gt;Format EFI System Partition (ESP):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;mkfs.fat -F32 /dev/sda1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Encrypt the other partition with LUKS (512 Bit AES-XTS and SHA512 for passphrase):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cryptsetup luksFormat -v -s 512 -h sha512 /dev/sda2
-cryptsetup luksOpen /dev/sda2 luks
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Setup Logical Volume Manager:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;pvcreate /dev/mapper/luks
-vgcreate rootvg /dev/mapper/luks
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Create Logical Volumes:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;lvcreate -n swap -L 4G -C y rootvg
-lvcreate -n root -L 25G rootvg
-lvcreate -n home -l 100%FREE rootvg
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Check LVM Setup:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;pvs
-vgs
-lvs
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Create filesystems for LVs:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;mkfs.ext4 /dev/mapper/rootvg-home
-mkfs.ext4 /dev/mapper/rootvg-root
-mkswap /dev/mapper/rootvg-swap
-swapon /dev/mapper/rootvg-swap
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Mount LVs and ESP for installation:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;mount /dev/mapper/rootvg-root /mnt
-mkdir /mnt/boot
-mkdir /mnt/home
-mount /dev/mapper/rootvg-home /mnt/home
-mount /dev/sda1 /mnt/boot
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Selecting fastest mirrors&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
-sed -i &#39;s/^#Server/Server/&#39; /etc/pacman.d/mirrorlist.backup
-rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup &amp;gt; /etc/pacman.d/mirrorlist
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;install-base-system&#34;&gt;Install base system&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;pacstrap -i /mnt base base-devel
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;generate-fstab-make-sure-swapon-is-set-when-running-these&#34;&gt;Generate fstab (make sure swapon is set when running these)&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;genfstab -p /mnt &amp;gt;&amp;gt; /mnt/etc/fstab
-nano /mnt/etc/fstab (for SSD change swap line from ‘defaults’ to ‘defaults,discard’)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;mount-into-system&#34;&gt;Mount into system&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;arch-chroot /mnt
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;set-hostname&#34;&gt;Set hostname&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;echo arch-laptop &amp;gt; /etc/hostname
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;set-timezone&#34;&gt;Set timezone&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;ln -s /usr/share/zoneinfo/Europe/Amsterdam /etc/localtime
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;locales&#34;&gt;Locales&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;nano /etc/locale.gen
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Uncomment the following two locales&lt;br /&gt;
-&lt;code&gt;en_US.UTF-8 UTF-8&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;en_US ISO-8859-1&lt;/code&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;locale-gen
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;set-language&#34;&gt;Set Language&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;echo LANG=en_US.UTF-8 &amp;gt; /etc/locale.conf
-export LANG=en_US.UTF-8
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Enabling Multilib and AUR repos&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;nano /etc/pacman.conf
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Scroll down and uncomment these lines:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;[multilib]
-Include = /etc/pacman.d/mirrorlist&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;And add these lines at the bottom of the file:&lt;br /&gt;
-&lt;code&gt;[archlinuxfr]&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;SigLevel = Never&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;Server = https://repo.archlinux.fr/$arch&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Update the repos&amp;rsquo;s&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;pacman -Syu
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;user-management&#34;&gt;User Management&lt;/h3&gt;
-
-&lt;h4 id=&#34;set-root-password&#34;&gt;Set root password&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;passwd
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;create-user&#34;&gt;Create user:&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;useradd -m -g users -G wheel,storage,power -s /bin/bash &amp;lt;user&amp;gt;
-passwd &amp;lt;user&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;setup-sudoers&#34;&gt;Setup sudoers:&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;EDITOR=nano visudo
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Uncomment this line:
-&lt;code&gt;%wheel ALL=(ALL) ALL&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Add to the bottom:
-&lt;code&gt;Defaults rootpw&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;installing-some-basic-software&#34;&gt;Installing some basic software&lt;/h2&gt;
-
-&lt;p&gt;Bash completion:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;pacman -S bash-completion
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Install packages for WiFi:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;pacman -S dialog wpa_supplicant wpa_actiond rfkill
-ip link
-systemctl enable netctl-auto@wlp2s0b1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Installing the bootloader:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;mount -t efivarfs efivarfs /sys/firmware/efi/efivars
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;bootctl install
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Write long UUID to file for later use&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;blkid | grep sda2 | cut -f2 -d\&amp;quot; &amp;gt; /boot/loader/entries/arch.conf
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Create an entry for Arch&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;nano /boot/loader/entries/arch.conf
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;title Arch Linux&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;linux /vmlinuz-linux&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;initrd /initramfs-linux.img&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;options cryptdevice=UUID=&amp;lt;YOUR_UUID&amp;gt;:rootvg:allow-discards root=/dev/mapper/rootvg-root rw&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;install-intel-microcode&#34;&gt;Install Intel Microcode:&lt;/h3&gt;
-
-&lt;p&gt;This is useful for when you want to be able to receive firmware updates to your CPU.
-You should only follow this step if you run on a Intel CPU.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;pacman -S intel-ucode
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Add the following to your previously created boot entry:&lt;br /&gt;
-&lt;code&gt;initrd /intel-ucode.img&lt;/code&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;nano /boot/loader/entries/arch.conf
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Your final boot entry should look like this:&lt;br /&gt;
-&lt;code&gt;title Arch Linux&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;linux /vmlinuz-linux&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;initrd /intel-ucode.img&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;initrd /initramfs-linux.img&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;options cryptdevice=UUID=&amp;lt;YOUR_UUID&amp;gt;:luks root=/dev/mapper/rootvg-root rw&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;set-required-hooks-for-boot-init&#34;&gt;Set required hooks for boot init.&lt;/h3&gt;
-
-&lt;p&gt;in &lt;code&gt;/etc/mkinitcpio.conf&lt;/code&gt; make sure the following hooks are present, if not add them:&lt;br /&gt;
-&lt;code&gt;encrypt&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;lvm2&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;An example of a complete string of hooks would be:
-&lt;code&gt;base udev autodetect modconf block filesystems keyboard keymap encrypt lvm2 fsck&lt;/code&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt; sudo mkinitcpio -p linux
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;finalize&#34;&gt;Finalize:&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;exit
-umount -R /mnt
-reboot
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;On laptops with touchpad:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -S xf86-input-synaptics
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Install graphics driver and display server&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -S mesa
-sudo pacman -S xorg-server xorg-server-utils xorg-xinit xorg-twm xorg-xclock
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;installing-and-enabling-a-firewall&#34;&gt;Installing and enabling a Firewall&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -S ufw
-sudo ufw enable
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;installing-and-enabling-openssh-server&#34;&gt;Installing and enabling OpenSSH-Server&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -S openssh
-sudo systemctl start sshd.socket
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;if-you-want-to-have-ssh-running-as-as-service-run-this&#34;&gt;If you want to have SSH running as as service run this&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo systemctl enable sshd.socket
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;if-needed-make-sure-the-ssh-connection-get-s-through-the-firewall&#34;&gt;If needed make sure the SSH connection get&amp;rsquo;s through the Firewall&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo ufw allow 22
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;install-awesome-gui-stuff&#34;&gt;Install awesome GUI stuff&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -S gnome
-sudo pacman -S gdm
-sudo systemctl enable gdm.service
-sudo pacman -S gnome-tweak-tool gnome-keyring
-sudo pacman -S yaourt
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Enable NetworkManager&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -S networkmanager  
-sudo systemctl enable NetworkManager.service
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Install some funky themes&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -S arc-gtk-theme
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Install some awesome packages&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -S file-roller firefox vlc keepass vim git jdk8-openjdk
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Install node version manager for NodeJS&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;yaourt -S nvm
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Install some support libraries&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -S xdotool xsel udisks dosfstools exfat-utils
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Enable media codecs&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -S gstreamer gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;macbook-specific&#34;&gt;Macbook Specific:&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -S xf86-video-intel
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;after-install-stuff-optional&#34;&gt;After install stuff [Optional]:&lt;/h2&gt;
-
-&lt;h3 id=&#34;terminal-preference&#34;&gt;Terminal preference&lt;/h3&gt;
-
-&lt;p&gt;See the &lt;a href=&#34;http://eli5.it/linux/tooling/zsh&#34;&gt;zsh n00b guide&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;auto-mounting-of-media-data-and-media-games&#34;&gt;Auto mounting of &lt;code&gt;/media/data&lt;/code&gt; and &lt;code&gt;/media/games&lt;/code&gt;.&lt;/h3&gt;
-
-&lt;p&gt;First make the folders to mount to:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Sudo mkdir -p /media/data
-Sudo mkdir -p /media/games
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;find-the-proper-uuids&#34;&gt;Find the proper UUIDs:&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo blkid | grep sdb1  
-sudo blkid | grep sdc1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;install-neccesary-filesystem-drivers-if-needed&#34;&gt;Install neccesary filesystem drivers if needed:&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -S ntfs-3g
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;then-add-the-uuid-of-desired-drive-to-the-fstab-like-so&#34;&gt;Then add the UUID of desired drive to the fstab like so:&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;UUID=&amp;lt;your-uuid&amp;gt; /media/data ext4 defaults 0 1
-UUID=&amp;lt;your-uuid&amp;gt; /media/games ntfs-3g defaults,discard 0 1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;installing-steam-native-runtime&#34;&gt;Installing steam native runtime:&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -S steam steam-native-runtime
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;link-keepass-plugins&#34;&gt;Link Keepass plugins:&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo cp .mozilla/firefox/5i95pb8t.default/extensions/keefox@chris.tomlinson/deps/KeePassRPC.plgx /usr/share/keepass/Plugins/
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <description>Prerequisites Check internet connection ping -c 3 www.google.com  If needed try connecting via WiFi wifi-menu  Check EFI vars present efivar -l  Main installation Set system time using NTP: timedatectl set-ntp true timedatectl status  Partitioning TIP: Leave a 128MiB empty ‘gap’ partition in between your ‘other os’ and your new partition.
+Zap all data on disk and create a new GPT table. Show current partition table</description>
     </item>
     
   </channel>

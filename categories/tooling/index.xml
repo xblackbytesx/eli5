@@ -2,11 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tooling on Explain IT Like I&#39;m 5</title>
-    <link>http://eli5.it/categories/tooling/index.xml</link>
+    <link>http://eli5.it/categories/tooling/</link>
     <description>Recent content in Tooling on Explain IT Like I&#39;m 5</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://eli5.it/categories/tooling/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 11 Jan 2017 15:27:34 +0100</lastBuildDate>
+    
+	<atom:link href="http://eli5.it/categories/tooling/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>pacman</title>
@@ -14,42 +17,9 @@
       <pubDate>Wed, 11 Jan 2017 15:27:34 +0100</pubDate>
       
       <guid>http://eli5.it/linux/tooling/pacman/</guid>
-      <description>
-
-&lt;h2 id=&#34;installing-a-package&#34;&gt;Installing a package&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -S &amp;lt;package&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;searching-for-a-package&#34;&gt;Searching for a package&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -Ss &amp;lt;description/name&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;removing-packages&#34;&gt;Removing packages&lt;/h2&gt;
-
-&lt;p&gt;To remove a single package, leaving all of its dependencies installed:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -R &amp;lt;package&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To remove a package and its dependencies which are not required by any other installed package:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -Rs &amp;lt;package&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;cleaning-the-package-cache&#34;&gt;Cleaning the package cache&lt;/h2&gt;
-
-&lt;p&gt;The built-in option to remove all the cached packages that are not currently installed is:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -Sc
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To clean the entire cache run this (be careful with this one):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -Scc
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <description>Installing a package sudo pacman -S &amp;lt;package&amp;gt;  Searching for a package sudo pacman -Ss &amp;lt;description/name&amp;gt;  Removing packages To remove a single package, leaving all of its dependencies installed:
+sudo pacman -R &amp;lt;package&amp;gt;  To remove a package and its dependencies which are not required by any other installed package:
+sudo pacman -Rs &amp;lt;package&amp;gt;  Cleaning the package cache The built-in option to remove all the cached packages that are not currently installed is:</description>
     </item>
     
     <item>
@@ -58,58 +28,11 @@
       <pubDate>Wed, 11 Jan 2017 11:13:15 +0100</pubDate>
       
       <guid>http://eli5.it/linux/tooling/zsh/</guid>
-      <description>
-
-&lt;h2 id=&#34;install-and-switch-to-zsh&#34;&gt;Install and switch to ZSH&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo pacman -S zsh zsh-completions
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Run it once to configure the default settings.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;zsh
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;install-antigen-for-advanced-plugin-management&#34;&gt;Install Antigen for advanced plugin management&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;yaourt -S antigen-git
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Add the following source to your &lt;code&gt;~/.zshrc&lt;/code&gt; file:&lt;br /&gt;
-&lt;code&gt;source /usr/share/zsh/scripts/antigen/antigen.zsh&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Add some awesome plugins like Git support and Syntax hightlighting&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# Load the oh-my-zsh&#39;s library.
-antigen use oh-my-zsh
-
-# Bundles from the default repo (robbyrussell&#39;s oh-my-zsh).
-antigen bundle git
-
-# Syntax highlighting bundle.
-antigen bundle zsh-users/zsh-syntax-highlighting
-
-# Load the theme.
-antigen theme af-magic
-
-# Tell antigen that you&#39;re done.
-antigen apply
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Play around with it and if you like it set as default shell for your user.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;chsh -s $(which zsh)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;aliasses&#34;&gt;Aliasses&lt;/h2&gt;
-
-&lt;p&gt;Make ZSH look for a .aliases file.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;echo &#39;&#39; &amp;gt;&amp;gt; .zshrc
-echo &#39;source $HOME/.aliases&#39; &amp;gt;&amp;gt; .zshrc
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <description>Install and switch to ZSH sudo pacman -S zsh zsh-completions  Run it once to configure the default settings.
+zsh  Install Antigen for advanced plugin management yaourt -S antigen-git  Add the following source to your ~/.zshrc file:
+source /usr/share/zsh/scripts/antigen/antigen.zsh
+Add some awesome plugins like Git support and Syntax hightlighting
+# Load the oh-my-zsh&#39;s library. antigen use oh-my-zsh # Bundles from the default repo (robbyrussell&#39;s oh-my-zsh). antigen bundle git # Syntax highlighting bundle.</description>
     </item>
     
   </channel>

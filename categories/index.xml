@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Explain IT Like I&#39;m 5</title>
+    <link>http://eli5.it/categories/</link>
+    <description>Recent content in Categories on Explain IT Like I&#39;m 5</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 24 Feb 2017 21:47:40 +0100</lastBuildDate>
+    
+	<atom:link href="http://eli5.it/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Android</title>
+      <link>http://eli5.it/categories/android/</link>
+      <pubDate>Fri, 24 Feb 2017 21:47:40 +0100</pubDate>
+      
+      <guid>http://eli5.it/categories/android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>http://eli5.it/categories/linux/</link>
+      <pubDate>Wed, 11 Jan 2017 15:27:34 +0100</pubDate>
+      
+      <guid>http://eli5.it/categories/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tooling</title>
+      <link>http://eli5.it/categories/tooling/</link>
+      <pubDate>Wed, 11 Jan 2017 15:27:34 +0100</pubDate>
+      
+      <guid>http://eli5.it/categories/tooling/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

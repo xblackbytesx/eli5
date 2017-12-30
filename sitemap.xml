@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
     <loc>http://eli5.it/internet/publishing/ghost-blog-n00b-guide/</loc>
@@ -45,6 +46,7 @@
   
   <url>
     <loc>http://eli5.it/categories/</loc>
+    <lastmod>2017-02-24T21:47:40+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -80,6 +82,12 @@
   
   <url>
     <loc>http://eli5.it/series/</loc>
+    <lastmod>2017-01-10T00:14:35+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://eli5.it/tags/</loc>
     <priority>0</priority>
   </url>
   
