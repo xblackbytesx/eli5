@@ -298,14 +298,13 @@ passwd &lt;user&gt;
 <p>Install packages for WiFi:</p>
 
 <pre><code>pacman -S dialog wpa_supplicant wpa_actiond rfkill
-ip link
+</code></pre>
+
+<pre><code>ip link
 systemctl enable netctl-auto@wlp2s0b1
 </code></pre>
 
 <p>Installing the bootloader:</p>
-
-<pre><code>mount -t efivarfs efivarfs /sys/firmware/efi/efivars
-</code></pre>
 
 <pre><code>bootctl install
 </code></pre>
@@ -373,7 +372,7 @@ reboot
 <p>Install graphics driver and display server</p>
 
 <pre><code>sudo pacman -S mesa
-sudo pacman -S xorg-server xorg-server-utils xorg-xinit xorg-twm xorg-xclock
+sudo pacman -S xorg-server xorg-xinit xorg-twm xorg-xclock
 </code></pre>
 
 <h3 id="installing-and-enabling-a-firewall">Installing and enabling a Firewall</h3>
@@ -400,8 +399,7 @@ sudo systemctl start sshd.socket
 
 <h3 id="install-awesome-gui-stuff">Install awesome GUI stuff</h3>
 
-<pre><code>sudo pacman -S gnome
-sudo pacman -S gdm
+<pre><code>sudo pacman -S gnome gdm
 sudo systemctl enable gdm.service
 sudo pacman -S gnome-tweak-tool gnome-keyring
 sudo pacman -S yaourt
@@ -415,22 +413,20 @@ sudo systemctl enable NetworkManager.service
 
 <p>Install some funky themes</p>
 
-<pre><code>sudo pacman -S arc-gtk-theme
+<pre><code>yaourt -S adapta-gtk-theme-git la-capitaine-icon-theme
 </code></pre>
 
 <p>Install some awesome packages</p>
 
-<pre><code>sudo pacman -S file-roller firefox vlc keepass vim git jdk8-openjdk
+<pre><code>sudo pacman -S file-roller vlc vim git jdk8-openjdk
 </code></pre>
 
-<p>Install node version manager for NodeJS</p>
-
-<pre><code>yaourt -S nvm
+<pre><code>yaourt -S chrome-gnome-shell-git firefox-nightly keepassxc-git
 </code></pre>
 
 <p>Install some support libraries</p>
 
-<pre><code>sudo pacman -S xdotool xsel udisks dosfstools exfat-utils
+<pre><code>sudo pacman -S xdotool xsel udisks2 dosfstools exfat-utils
 </code></pre>
 
 <p>Enable media codecs</p>
@@ -483,11 +479,6 @@ UUID=&lt;your-uuid&gt; /media/games ntfs-3g defaults,discard 0 1
 <pre><code>sudo pacman -S steam steam-native-runtime
 </code></pre>
 
-<h3 id="link-keepass-plugins">Link Keepass plugins:</h3>
-
-<pre><code>sudo cp .mozilla/firefox/5i95pb8t.default/extensions/keefox@chris.tomlinson/deps/KeePassRPC.plgx /usr/share/keepass/Plugins/
-</code></pre>
-
                     </section>
                 </article>
             </div>
@@ -524,7 +515,7 @@ UUID=&lt;your-uuid&gt; /media/games ntfs-3g defaults,discard 0 1
         <div class="row">
             <div class="sixteen columns">
                 <div class="li-page-footer-legal">
-                    &copy; 2017 Creative Commons Attribution 4.0 International
+                    &copy; 2018 Creative Commons Attribution 4.0 International
                 </div>
                 <div class="li-page-footer-theme">
                     <span class=""><a href="https://github.com/xblackbytesx/darkdoc/">darkdoc</a> is a theme for <a href="http://hugo.spf13.com">hugo</a></span>
