@@ -74,7 +74,7 @@
                             
                         </span>
                          - 
-                        <time class="li-article-date">Tuesday, January 10, 2017</time> - <time class="li-article-date">Last updated: Monday, January 1, 2018</time>
+                        <time class="li-article-date">Tuesday, January 10, 2017</time> - <time class="li-article-date">Last updated: Tuesday, January 2, 2018</time>
                     </header>
                     <section>
                         
@@ -110,7 +110,7 @@ timedatectl status
 
 <h3 id="partitioning">Partitioning</h3>
 
-<p><strong>TIP:</strong> Leave a 128MiB empty ‘gap’ partition in between your ‘other os’ and your new partition.</p>
+<p><strong>TIP:</strong> If dual-booting leave a 128MiB empty ‘gap’ partition in between your ‘other os’ and your new partition.</p>
 
 <h4 id="zap-all-data-on-disk-and-create-a-new-gpt-table">Zap all data on disk and create a new GPT table.</h4>
 
@@ -300,8 +300,12 @@ passwd &lt;user&gt;
 <pre><code>pacman -S dialog wpa_supplicant wpa_actiond rfkill
 </code></pre>
 
+<p>Find and enable your wireless-interface</p>
+
 <pre><code>ip link
-systemctl enable netctl-auto@wlp2s0b1
+</code></pre>
+
+<pre><code>systemctl enable netctl-auto@&lt;YOUR_INTERFACE&gt;
 </code></pre>
 
 <p>Installing the bootloader:</p>
@@ -364,15 +368,26 @@ umount -R /mnt
 reboot
 </code></pre>
 
+<p>Congratulations! You are now booted into your new Arch system. As you&rsquo;ve noticed things are a little &lsquo;texty&rsquo; out here. Let&rsquo;s add some paint.</p>
+
+<hr />
+
+<h3 id="install-a-graphics-driver-and-display-server">Install a graphics driver and display server</h3>
+
+<pre><code>sudo pacman -S mesa xorg-server xorg-xinit xorg-twm xorg-xclock
+</code></pre>
+
 <p>On laptops with touchpad:</p>
 
 <pre><code>sudo pacman -S xf86-input-synaptics
 </code></pre>
 
-<p>Install graphics driver and display server</p>
+<h3 id="install-awesome-gui-stuff">Install awesome GUI stuff</h3>
 
-<pre><code>sudo pacman -S mesa
-sudo pacman -S xorg-server xorg-xinit xorg-twm xorg-xclock
+<pre><code>sudo pacman -S gnome gdm
+sudo systemctl enable gdm.service
+sudo pacman -S gnome-tweak-tool gnome-keyring
+sudo pacman -S yaourt
 </code></pre>
 
 <h3 id="installing-and-enabling-a-firewall">Installing and enabling a Firewall</h3>
@@ -384,39 +399,31 @@ sudo ufw enable
 <h3 id="installing-and-enabling-openssh-server">Installing and enabling OpenSSH-Server</h3>
 
 <pre><code>sudo pacman -S openssh
-sudo systemctl start sshd.socket
 </code></pre>
 
-<h4 id="if-you-want-to-have-ssh-running-as-as-service-run-this">If you want to have SSH running as as service run this</h4>
+<pre><code>sudo systemctl start sshd.socket
+</code></pre>
 
 <pre><code>sudo systemctl enable sshd.socket
 </code></pre>
 
-<h4 id="if-needed-make-sure-the-ssh-connection-get-s-through-the-firewall">If needed make sure the SSH connection get&rsquo;s through the Firewall</h4>
+<p>If needed make sure the SSH connection get&rsquo;s through the Firewall</p>
 
 <pre><code>sudo ufw allow 22
 </code></pre>
 
-<h3 id="install-awesome-gui-stuff">Install awesome GUI stuff</h3>
-
-<pre><code>sudo pacman -S gnome gdm
-sudo systemctl enable gdm.service
-sudo pacman -S gnome-tweak-tool gnome-keyring
-sudo pacman -S yaourt
-</code></pre>
-
-<p>Enable NetworkManager</p>
+<h3 id="enable-networkmanager">Enable NetworkManager</h3>
 
 <pre><code>sudo pacman -S networkmanager  
 sudo systemctl enable NetworkManager.service
 </code></pre>
 
-<p>Install some funky themes</p>
+<h3 id="install-some-funky-themes">Install some funky themes</h3>
 
 <pre><code>yaourt -S adapta-gtk-theme-git la-capitaine-icon-theme
 </code></pre>
 
-<p>Install some awesome packages</p>
+<h3 id="install-some-awesome-packages">Install some awesome packages</h3>
 
 <pre><code>sudo pacman -S file-roller vlc vim git jdk8-openjdk
 </code></pre>
@@ -424,24 +431,15 @@ sudo systemctl enable NetworkManager.service
 <pre><code>yaourt -S chrome-gnome-shell-git firefox-nightly keepassxc-git
 </code></pre>
 
-<p>Install some support libraries</p>
+<h3 id="install-some-support-libraries">Install some support libraries</h3>
 
-<pre><code>sudo pacman -S xdotool xsel udisks2 dosfstools exfat-utils
+<pre><code>sudo pacman -S xdotool xsel udisks2 dosfstools exfat-utils ntfs-3g
 </code></pre>
 
 <p>Enable media codecs</p>
 
 <pre><code>sudo pacman -S gstreamer gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly
 </code></pre>
-
-<hr />
-
-<h2 id="macbook-specific">Macbook Specific:</h2>
-
-<pre><code>sudo pacman -S xf86-video-intel
-</code></pre>
-
-<hr />
 
 <h2 id="after-install-stuff-optional">After install stuff [Optional]:</h2>
 
@@ -453,19 +451,14 @@ sudo systemctl enable NetworkManager.service
 
 <p>First make the folders to mount to:</p>
 
-<pre><code>Sudo mkdir -p /media/data
-Sudo mkdir -p /media/games
+<pre><code>sudo mkdir -p /media/data
+sudo mkdir -p /media/games
 </code></pre>
 
 <h4 id="find-the-proper-uuids">Find the proper UUIDs:</h4>
 
 <pre><code>sudo blkid | grep sdb1  
 sudo blkid | grep sdc1
-</code></pre>
-
-<h4 id="install-neccesary-filesystem-drivers-if-needed">Install neccesary filesystem drivers if needed:</h4>
-
-<pre><code>sudo pacman -S ntfs-3g
 </code></pre>
 
 <h4 id="then-add-the-uuid-of-desired-drive-to-the-fstab-like-so">Then add the UUID of desired drive to the fstab like so:</h4>
@@ -478,6 +471,17 @@ UUID=&lt;your-uuid&gt; /media/games ntfs-3g defaults,discard 0 1
 
 <pre><code>sudo pacman -S steam steam-native-runtime
 </code></pre>
+
+<hr />
+
+<h2 id="device-specific-steps">Device specific steps</h2>
+
+<h3 id="macbook-video-driver">Macbook video driver:</h3>
+
+<pre><code>sudo pacman -S xf86-video-intel
+</code></pre>
+
+<hr />
 
                     </section>
                 </article>

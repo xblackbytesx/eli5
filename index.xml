@@ -86,7 +86,7 @@ Add some awesome plugins like Git support and Syntax hightlighting
       <pubDate>Tue, 10 Jan 2017 00:14:35 +0100</pubDate>
       
       <guid>http://eli5.it/linux/install-guide/arch-linux-n00b-guide/</guid>
-      <description>Prerequisites Check internet connection ping -c 3 www.google.com  If needed try connecting via WiFi wifi-menu  Check EFI vars present efivar -l  Main installation Set system time using NTP: timedatectl set-ntp true timedatectl status  Partitioning TIP: Leave a 128MiB empty ‘gap’ partition in between your ‘other os’ and your new partition.
+      <description>Prerequisites Check internet connection ping -c 3 www.google.com  If needed try connecting via WiFi wifi-menu  Check EFI vars present efivar -l  Main installation Set system time using NTP: timedatectl set-ntp true timedatectl status  Partitioning TIP: If dual-booting leave a 128MiB empty ‘gap’ partition in between your ‘other os’ and your new partition.
 Zap all data on disk and create a new GPT table. Show current partition table</description>
     </item>
     
