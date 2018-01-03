@@ -74,7 +74,7 @@
                             
                         </span>
                          - 
-                        <time class="li-article-date">Tuesday, January 10, 2017</time> - <time class="li-article-date">Last updated: Tuesday, January 2, 2018</time>
+                        <time class="li-article-date">Tuesday, January 10, 2017</time> - <time class="li-article-date">Last updated: Friday, March 2, 2018</time>
                     </header>
                     <section>
                         
@@ -436,9 +436,9 @@ sudo systemctl enable NetworkManager.service
 <pre><code>sudo pacman -S xdotool xsel udisks2 dosfstools exfat-utils ntfs-3g
 </code></pre>
 
-<p>Enable media codecs</p>
+<p>Enable minimal media codecs</p>
 
-<pre><code>sudo pacman -S gstreamer gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly
+<pre><code>sudo pacman -S gstreamer gst-plugins-good gst-plugins-ugly
 </code></pre>
 
 <h2 id="after-install-stuff-optional">After install stuff [Optional]:</h2>
@@ -474,14 +474,24 @@ UUID=&lt;your-uuid&gt; /media/games ntfs-3g defaults,discard 0 1
 
 <hr />
 
-<h2 id="device-specific-steps">Device specific steps</h2>
+<h2 id="device-specifics-and-troubleshooting">Device specifics and troubleshooting</h2>
 
 <h3 id="macbook-video-driver">Macbook video driver:</h3>
 
 <pre><code>sudo pacman -S xf86-video-intel
 </code></pre>
 
-<hr />
+<h3 id="use-networkmanager-instead-of-netctl">Use NetworkManager instead of netctl</h3>
+
+<p>During installation we enabled the netctl-auto configuration in order to have access to wireless internet post-install. This is because life after install is just a terminal prompt. After installing a GUI though you probably would like to start using a graphical network manager. In this case we&rsquo;re going to assume you installed GNOME.</p>
+
+<pre><code>sudo systemctl disable netctl-auto@&lt;YOUR_INTERFACE&gt;.service
+</code></pre>
+
+<pre><code>sudo systemctl enable NetworkManager.service
+</code></pre>
+
+<p>Simply reboot and enjoy your new NetworkManager</p>
 
                     </section>
                 </article>
