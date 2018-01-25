@@ -69,7 +69,7 @@
                             
                         </span>
                         
-                        <time class="li-article-date">Tuesday, March 21, 2017</time> - <time class="li-article-date">Last updated: Tuesday, March 21, 2017</time>
+                        <time class="li-article-date">Tuesday, March 21, 2017</time> - <time class="li-article-date">Last updated: Thursday, January 4, 2018</time>
                     </header>
                     <section>
                         
@@ -78,10 +78,17 @@
 
 <p><code>sudo pacman -S docker docker-compose</code></p>
 
+<h2 id="add-yourself-to-the-docker-group">Add yourself to the docker group:</h2>
+
+<p><code>sudo gpasswd -a &lt;USER&gt; docker</code></p>
+
+<p>WARNING: Every user you add to the <code>docker</code> group is root equivalent.<br />
+NOTE: It takes a reboot for this change to take effect.</p>
+
 <h2 id="start-deamon">Start deamon</h2>
 
-<p><code>sudo systemctl start docker</code><br />
-<code>sudo systemclt enable docker</code></p>
+<p><code>sudo systemctl start docker.service</code><br />
+<code>sudo systemclt enable docker.service</code></p>
 
 <!-- # Configuration
 Files you need
@@ -98,24 +105,23 @@ ssh dir with private key -->
 
 <h3 id="build-a-container">Build a container</h3>
 
-<p><code>sudo docker build -t &lt;docker_name&gt; .</code><br />
-<code>sudo service docker start</code><br />
-<code>sudo docker run -d -P &lt;docker_name&gt;</code></p>
+<p><code>docker build -t &lt;docker_name&gt; .</code><br />
+<code>docker run -d -P &lt;docker_name&gt;</code></p>
 
 <p>OPTIONAL - Name your own docker instance name:
 sudo docker run -d &ndash;name <instance_name> -p 81:80 <docker_name></p>
 
 <h3 id="show-docker-instances-with-names">Show Docker instances with names</h3>
 
-<p><code>sudo docker ps</code></p>
+<p><code>docker ps</code></p>
 
 <h3 id="open-the-bash-shell">Open the bash shell</h3>
 
-<p><code>sudo docker exec -it &lt;instance_name&gt; bash</code></p>
+<p><code>docker exec -it &lt;instance_name&gt; bash</code></p>
 
 <h3 id="stop-docker-instance">Stop Docker instance</h3>
 
-<p><code>sudo docker stop &lt;instance_name&gt;</code>
+<p><code>docker stop &lt;instance_name&gt;</code>
 
 <!-- # Publishing --></p>
 
@@ -146,8 +152,8 @@ Example /start_app_with_docker.sh
 
 <h2 id="removing-cruft">Removing cruft</h2>
 
-<p><code>sudo docker rm $(sudo docker ps -a)</code><br />
-<code>sudo docker rmi $(sudo docker images -q)</code></p>
+<p><code>docker rm $(sudo docker ps -a)</code><br />
+<code>docker rmi $(sudo docker images -q)</code></p>
 
                     </section>
                 </article>

@@ -414,13 +414,13 @@ sudo ufw enable
 
 <h3 id="enable-networkmanager">Enable NetworkManager</h3>
 
-<pre><code>sudo pacman -S networkmanager  
+<pre><code>sudo pacman -S networkmanager networkmanager-openvpn
 sudo systemctl enable NetworkManager.service
 </code></pre>
 
 <h3 id="install-some-funky-themes">Install some funky themes</h3>
 
-<pre><code>yaourt -S adapta-gtk-theme-git la-capitaine-icon-theme
+<pre><code>yaourt -S adapta-gtk-theme-git paper-icon-theme-git
 </code></pre>
 
 <h3 id="install-some-awesome-packages">Install some awesome packages</h3>
@@ -428,7 +428,10 @@ sudo systemctl enable NetworkManager.service
 <pre><code>sudo pacman -S file-roller vlc vim git jdk8-openjdk
 </code></pre>
 
-<pre><code>yaourt -S chrome-gnome-shell-git firefox-nightly keepassxc-git
+<pre><code>yaourt -S chrome-gnome-shell-git keepassxc-git
+</code></pre>
+
+<pre><code>firefox-nightly inox
 </code></pre>
 
 <h3 id="install-some-support-libraries">Install some support libraries</h3>
@@ -439,6 +442,12 @@ sudo systemctl enable NetworkManager.service
 <p>Enable minimal media codecs</p>
 
 <pre><code>sudo pacman -S gstreamer gst-plugins-good gst-plugins-ugly
+</code></pre>
+
+<h3 id="install-some-nifty-little-package-installers-flatpak-vs-snap-fight">Install some nifty little package installers (Flatpak vs Snap.. FIGHT!)</h3>
+
+<pre><code>sudo pacman -S flatpak  
+yaourt -S snapd
 </code></pre>
 
 <h2 id="after-install-stuff-optional">After install stuff [Optional]:</h2>
