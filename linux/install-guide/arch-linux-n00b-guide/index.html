@@ -425,13 +425,15 @@ sudo systemctl enable NetworkManager.service
 
 <h3 id="install-some-awesome-packages">Install some awesome packages</h3>
 
-<pre><code>sudo pacman -S file-roller vlc vim git jdk8-openjdk
+<pre><code>sudo pacman -S file-roller vlc vim git jdk8-openjdk keepassxc inox
 </code></pre>
 
-<pre><code>yaourt -S chrome-gnome-shell-git keepassxc-git
+<h4 id="add-a-mozilla-signature-in-order-to-build-firefox">Add a Mozilla signature in order to build Firefox</h4>
+
+<pre><code>gpg --recv-key 0x61B7B526D98F0353
 </code></pre>
 
-<pre><code>firefox-nightly inox
+<pre><code>yaourt -S chrome-gnome-shell-git firefox-nightly
 </code></pre>
 
 <h3 id="install-some-support-libraries">Install some support libraries</h3>
