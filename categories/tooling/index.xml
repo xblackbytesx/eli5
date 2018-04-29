@@ -7,10 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>Creative Commons Attribution 4.0 International</copyright>
-    <lastBuildDate>Wed, 11 Jan 2017 15:27:34 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 28 Apr 2018 15:27:34 +0100</lastBuildDate>
     
 	<atom:link href="http://eli5.it/categories/tooling/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>GPG Basics</title>
+      <link>http://eli5.it/linux/tooling/gpg-basics/</link>
+      <pubDate>Sat, 28 Apr 2018 15:27:34 +0100</pubDate>
+      
+      <guid>http://eli5.it/linux/tooling/gpg-basics/</guid>
+      <description>Generate a strong 4096 bit key
+gpg --full-generate-key  List generated keys
+gpg --list-secret-keys  Upload key to default servers
+gpg --send-keys &amp;lt;your_key_uid&amp;gt;  Specify a specific remote server
+gpg --keyserver hkps://keyserver.ubuntu.com --send-keys &amp;lt;your_key_uid&amp;gt;  </description>
+    </item>
     
     <item>
       <title>pacman</title>
