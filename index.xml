@@ -22,7 +22,8 @@
 gpg --full-generate-key  List generated keys
 gpg --list-secret-keys  Upload key to default servers
 gpg --send-keys &amp;lt;your_key_uid&amp;gt;  Specify a specific remote server
-gpg --keyserver hkps://keyserver.ubuntu.com --send-keys &amp;lt;your_key_uid&amp;gt;  </description>
+gpg --keyserver hkps://keyserver.ubuntu.com --send-keys &amp;lt;your_key_uid&amp;gt;  Exporting your key for orther devices
+gpg --output sec_key.gpg --armor --export-secret-key &amp;lt;your_key_uid&amp;gt;  </description>
     </item>
     
     <item>
