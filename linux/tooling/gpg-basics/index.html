@@ -5,12 +5,12 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
 
-        <title>Linuxes &middot; Explain IT Like I&#39;m 5</title>
+        <title>GPG Basics &middot; Explain IT Like I&#39;m 5</title>
         <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600' type='text/css'>
         <link rel="stylesheet" href="http://eli5.it/dist/styles.css" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-144-precomposed.png" sizes="144x144" />
-        <link rel="alternate" href="http://eli5.it/linux/index.xml" type="application/rss+xml" title="Explain IT Like I&#39;m 5" />
+        <link rel="alternate" href="" type="application/rss+xml" title="Explain IT Like I&#39;m 5" />
         
 
     </head>
@@ -53,38 +53,84 @@
 </header>
 
 
+
+
+
+
     <div class="container">
         <div class="row">
             <div class="sixteen columns">
-                <h1>Linuxes</h1>
-                <ul class="li-article-list">
+                <article class="li-article">
+                    <header class="li-article-header">
+                        <h1 class="li-article-title">GPG Basics</h1>
+                        <span class="li-article-taxonomies">
+                            
+                                Posted in
+                                
+                                    <a href="http://eli5.it//categories/linux">Linux</a>
+                                
+                                    <a href="http://eli5.it//categories/tooling">Tooling</a>
+                                
+                            
+
+                            
+                        </span>
+                         - 
+                        <time class="li-article-date">Saturday, April 28, 2018</time> - <time class="li-article-date">Last updated: Saturday, April 28, 2018</time>
+                    </header>
+                    <section>
+                        <p>Generate a strong 4096 bit key</p>
+
+<pre><code>gpg --full-generate-key
+</code></pre>
+
+<p>List generated keys</p>
+
+<pre><code>gpg --list-secret-keys
+</code></pre>
+
+<p>Upload key to default servers</p>
+
+<pre><code>gpg --send-keys &lt;your_key_uid&gt;
+</code></pre>
+
+<p>Specify a specific remote server</p>
+
+<pre><code>gpg --keyserver hkps://keyserver.ubuntu.com --send-keys &lt;your_key_uid&gt;
+</code></pre>
+
+<p>Exporting your key for orther devices</p>
+
+<pre><code>gpg --output sec_key.gpg --armor --export-secret-key &lt;your_key_uid&gt;
+</code></pre>
+
+                    </section>
+                </article>
+            </div>
+        </div>
+
+        <div class="row li-author">
+    <div class="sixteen columns">
+        Written by <strong>Fabio Bier</strong>
+    </div>
+</div>
+
+
+        <div class="row li-pagination">
+            <div class="eight columns">
+                <div class="li-pagination-previous">
                     
-                        <li>
-                            <time class="li-article-date">April, 28, 2018</time>
-                            <h4><a href="http://eli5.it/linux/tooling/gpg-basics/">GPG Basics</a></h4>
-                        </li>
+                        &nbsp;
                     
-                        <li>
-                            <time class="li-article-date">March, 21, 2017</time>
-                            <h4><a href="http://eli5.it/linux/devops/docker-n00b-guide/">docker n00b guide</a></h4>
-                        </li>
+                </div>
+            </div>
+            <div class="eight columns">
+                <div class="li-pagination-next">
                     
-                        <li>
-                            <time class="li-article-date">January, 11, 2017</time>
-                            <h4><a href="http://eli5.it/linux/tooling/pacman/">pacman</a></h4>
-                        </li>
+                        Older article<br />
+                        <a href="http://eli5.it/internet/publishing/ghost-blog-n00b-guide/"> [OUTDATED] ghost blog n00b guide</a>
                     
-                        <li>
-                            <time class="li-article-date">January, 11, 2017</time>
-                            <h4><a href="http://eli5.it/linux/tooling/zsh/">zsh</a></h4>
-                        </li>
-                    
-                        <li>
-                            <time class="li-article-date">January, 10, 2017</time>
-                            <h4><a href="http://eli5.it/linux/install-guide/arch-linux-n00b-guide/">[UPDATED] arch linux n00b guide</a></h4>
-                        </li>
-                    
-                </ul>
+                </div>
             </div>
         </div>
     </div>

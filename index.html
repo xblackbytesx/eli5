@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="//www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
     <head>
-	<meta name="generator" content="Hugo 0.34" />
+	<meta name="generator" content="Hugo 0.47.1" />
 
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
@@ -62,7 +62,28 @@
                         <div class="li-article">
                             <article>
     <header>
-        <h2><a href="http://eli5.it/internet/publishing/ghost-blog-n00b-guide/">ghost blog n00b guide </a></h2>
+        <h2><a href="http://eli5.it/linux/tooling/gpg-basics/">GPG Basics </a></h2>
+        <time class="li-article-date">Saturday, April 28, 2018</time>
+    </header>
+    <section class="li-article-section">
+        Generate a strong 4096 bit key
+gpg --full-generate-key  List generated keys
+gpg --list-secret-keys  Upload key to default servers
+gpg --send-keys &lt;your_key_uid&gt;  Specify a specific remote server
+gpg --keyserver hkps://keyserver.ubuntu.com --send-keys &lt;your_key_uid&gt;  Exporting your key for orther devices
+gpg --output sec_key.gpg --armor --export-secret-key &lt;your_key_uid&gt;  
+    </section>
+    <footer>
+        <a href='http://eli5.it/linux/tooling/gpg-basics/'>More</a>
+    </footer>
+</article>
+
+                        </div>
+                    
+                        <div class="li-article">
+                            <article>
+    <header>
+        <h2><a href="http://eli5.it/internet/publishing/ghost-blog-n00b-guide/">[OUTDATED] ghost blog n00b guide </a></h2>
         <time class="li-article-date">Tuesday, March 28, 2017</time>
     </header>
     <section class="li-article-section">
@@ -107,15 +128,12 @@ OPTIONAL - Name your own docker instance name: sudo docker run -d &ndash;name  -
                         <div class="li-article">
                             <article>
     <header>
-        <h2><a href="http://eli5.it/android/life-without-gapps/">life without gapps </a></h2>
+        <h2><a href="http://eli5.it/android/life-without-gapps/">[UPDATED] life without gapps </a></h2>
         <time class="li-article-date">Friday, February 24, 2017</time>
     </header>
     <section class="li-article-section">
-        Guesture typing In order to enjoy guesture typing with the AOSP keyboard you need to copy two (proprietary) libs into your system/lib64. This is if you&rsquo;re actually on a arm64 enabled device of course, otherwise you copy it to system/lib
-The following require libs can be obtained from the OpenGapps Github repository.
-libjni_keyboarddecoder
-libjni_latinimegoogle
-After you&rsquo;ve copied these to the appropriate folder be sure to set the correct permissions. -rw-r--r-- or for the numeric types amongst you 644.
+        UPDATE: There is now a much easier way to run Android properly without GAPPS. The good folks at microG have created LineageOS builds with integrated microG apps and spoofed signatures. Take a look at all the benefits of this project. They build weekly from official LineageOS nightlies.
+Guesture typing In order to enjoy guesture typing with the AOSP keyboard you need to copy two (proprietary) libs into your system/lib64. This is if you&rsquo;re actually on a arm64 enabled device of course, otherwise you copy it to system/lib
     </section>
     <footer>
         <a href='http://eli5.it/android/life-without-gapps/'>More</a>
@@ -165,7 +183,7 @@ Add some awesome plugins like Git support and Syntax hightlighting
                         <div class="li-article">
                             <article>
     <header>
-        <h2><a href="http://eli5.it/linux/install-guide/arch-linux-n00b-guide/">arch linux n00b guide </a></h2>
+        <h2><a href="http://eli5.it/linux/install-guide/arch-linux-n00b-guide/">[UPDATED] arch linux n00b guide </a></h2>
         <time class="li-article-date">Tuesday, January 10, 2017</time>
     </header>
     <section class="li-article-section">

@@ -7,13 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>Creative Commons Attribution 4.0 International</copyright>
-    <lastBuildDate>Tue, 28 Mar 2017 13:55:27 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 28 Apr 2018 15:27:34 +0100</lastBuildDate>
     
 	<atom:link href="http://eli5.it/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>ghost blog n00b guide</title>
+      <title>GPG Basics</title>
+      <link>http://eli5.it/linux/tooling/gpg-basics/</link>
+      <pubDate>Sat, 28 Apr 2018 15:27:34 +0100</pubDate>
+      
+      <guid>http://eli5.it/linux/tooling/gpg-basics/</guid>
+      <description>Generate a strong 4096 bit key
+gpg --full-generate-key  List generated keys
+gpg --list-secret-keys  Upload key to default servers
+gpg --send-keys &amp;lt;your_key_uid&amp;gt;  Specify a specific remote server
+gpg --keyserver hkps://keyserver.ubuntu.com --send-keys &amp;lt;your_key_uid&amp;gt;  Exporting your key for orther devices
+gpg --output sec_key.gpg --armor --export-secret-key &amp;lt;your_key_uid&amp;gt;  </description>
+    </item>
+    
+    <item>
+      <title>[OUTDATED] ghost blog n00b guide</title>
       <link>http://eli5.it/internet/publishing/ghost-blog-n00b-guide/</link>
       <pubDate>Tue, 28 Mar 2017 13:55:27 +0200</pubDate>
       
@@ -44,16 +58,13 @@ OPTIONAL - Name your own docker instance name: sudo docker run -d &amp;ndash;nam
     </item>
     
     <item>
-      <title>life without gapps</title>
+      <title>[UPDATED] life without gapps</title>
       <link>http://eli5.it/android/life-without-gapps/</link>
       <pubDate>Fri, 24 Feb 2017 21:47:40 +0100</pubDate>
       
       <guid>http://eli5.it/android/life-without-gapps/</guid>
-      <description>Guesture typing In order to enjoy guesture typing with the AOSP keyboard you need to copy two (proprietary) libs into your system/lib64. This is if you&amp;rsquo;re actually on a arm64 enabled device of course, otherwise you copy it to system/lib
-The following require libs can be obtained from the OpenGapps Github repository.
-libjni_keyboarddecoder
-libjni_latinimegoogle
-After you&amp;rsquo;ve copied these to the appropriate folder be sure to set the correct permissions. -rw-r--r-- or for the numeric types amongst you 644.</description>
+      <description>UPDATE: There is now a much easier way to run Android properly without GAPPS. The good folks at microG have created LineageOS builds with integrated microG apps and spoofed signatures. Take a look at all the benefits of this project. They build weekly from official LineageOS nightlies.
+Guesture typing In order to enjoy guesture typing with the AOSP keyboard you need to copy two (proprietary) libs into your system/lib64. This is if you&amp;rsquo;re actually on a arm64 enabled device of course, otherwise you copy it to system/lib</description>
     </item>
     
     <item>
@@ -81,7 +92,7 @@ Add some awesome plugins like Git support and Syntax hightlighting
     </item>
     
     <item>
-      <title>arch linux n00b guide</title>
+      <title>[UPDATED] arch linux n00b guide</title>
       <link>http://eli5.it/linux/install-guide/arch-linux-n00b-guide/</link>
       <pubDate>Tue, 10 Jan 2017 00:14:35 +0100</pubDate>
       

@@ -13,16 +13,13 @@
     
     
     <item>
-      <title>life without gapps</title>
+      <title>[UPDATED] life without gapps</title>
       <link>http://eli5.it/android/life-without-gapps/</link>
       <pubDate>Fri, 24 Feb 2017 21:47:40 +0100</pubDate>
       
       <guid>http://eli5.it/android/life-without-gapps/</guid>
-      <description>Guesture typing In order to enjoy guesture typing with the AOSP keyboard you need to copy two (proprietary) libs into your system/lib64. This is if you&amp;rsquo;re actually on a arm64 enabled device of course, otherwise you copy it to system/lib
-The following require libs can be obtained from the OpenGapps Github repository.
-libjni_keyboarddecoder
-libjni_latinimegoogle
-After you&amp;rsquo;ve copied these to the appropriate folder be sure to set the correct permissions. -rw-r--r-- or for the numeric types amongst you 644.</description>
+      <description>UPDATE: There is now a much easier way to run Android properly without GAPPS. The good folks at microG have created LineageOS builds with integrated microG apps and spoofed signatures. Take a look at all the benefits of this project. They build weekly from official LineageOS nightlies.
+Guesture typing In order to enjoy guesture typing with the AOSP keyboard you need to copy two (proprietary) libs into your system/lib64. This is if you&amp;rsquo;re actually on a arm64 enabled device of course, otherwise you copy it to system/lib</description>
     </item>
     
   </channel>

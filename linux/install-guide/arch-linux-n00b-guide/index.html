@@ -5,7 +5,7 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
 
-        <title>arch linux n00b guide &middot; Explain IT Like I&#39;m 5</title>
+        <title>[UPDATED] arch linux n00b guide &middot; Explain IT Like I&#39;m 5</title>
         <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600' type='text/css'>
         <link rel="stylesheet" href="http://eli5.it/dist/styles.css" />
         <link rel="shortcut icon" href="/favicon.ico" />
@@ -62,7 +62,7 @@
             <div class="sixteen columns">
                 <article class="li-article">
                     <header class="li-article-header">
-                        <h1 class="li-article-title">arch linux n00b guide</h1>
+                        <h1 class="li-article-title">[UPDATED] arch linux n00b guide</h1>
                         <span class="li-article-taxonomies">
                             
                                 Posted in
@@ -74,7 +74,7 @@
                             
                         </span>
                          - 
-                        <time class="li-article-date">Tuesday, January 10, 2017</time> - <time class="li-article-date">Last updated: Wednesday, January 3, 2018</time>
+                        <time class="li-article-date">Tuesday, January 10, 2017</time> - <time class="li-article-date">Last updated: Thursday, August 23, 2018</time>
                     </header>
                     <section>
                         
@@ -358,7 +358,7 @@ You should only follow this step if you run on a Intel CPU.</p>
 <p>An example of a complete string of hooks would be:
 <code>base udev autodetect modconf block filesystems keyboard keymap encrypt lvm2 fsck</code></p>
 
-<pre><code> sudo mkinitcpio -p linux
+<pre><code>mkinitcpio -p linux
 </code></pre>
 
 <h3 id="finalize">Finalize:</h3>
@@ -387,7 +387,14 @@ reboot
 <pre><code>sudo pacman -S gnome gdm
 sudo systemctl enable gdm.service
 sudo pacman -S gnome-tweak-tool gnome-keyring
-sudo pacman -S yaourt
+</code></pre>
+
+<h3 id="installing-a-aur-helper">Installing a AUR helper</h3>
+
+<p>In Arch we have a great asset that is the Arch User Respository (AUR). Here we can find all kinds of user maintained packages that would otherwise be quite hard to install. Using an AUR helper makes installing packages from the AUR as easy as Pacman for instance. Let&rsquo;s install my favorite one, aurman!</p>
+
+<pre><code>git clone https://github.com/polygamma/aurman.git
+cd aurman &amp;&amp; makepkg -si
 </code></pre>
 
 <h3 id="installing-and-enabling-a-firewall">Installing and enabling a Firewall</h3>
@@ -420,18 +427,20 @@ sudo systemctl enable NetworkManager.service
 
 <h3 id="install-some-funky-themes">Install some funky themes</h3>
 
-<pre><code>yaourt -S adapta-gtk-theme-git paper-icon-theme-git
+<pre><code>aurman -S adapta-gtk-theme-git paper-icon-theme-git
 </code></pre>
 
 <h3 id="install-some-awesome-packages">Install some awesome packages</h3>
 
-<pre><code>sudo pacman -S file-roller vlc vim git jdk8-openjdk
+<pre><code>sudo pacman -S file-roller vlc vim git jdk8-openjdk keepassxc inox
 </code></pre>
 
-<pre><code>yaourt -S chrome-gnome-shell-git keepassxc-git
+<h4 id="add-a-mozilla-signature-in-order-to-build-firefox">Add a Mozilla signature in order to build Firefox</h4>
+
+<pre><code>gpg --recv-key 0x61B7B526D98F0353
 </code></pre>
 
-<pre><code>firefox-nightly inox
+<pre><code>aurman -S chrome-gnome-shell-git firefox-nightly
 </code></pre>
 
 <h3 id="install-some-support-libraries">Install some support libraries</h3>
@@ -447,7 +456,7 @@ sudo systemctl enable NetworkManager.service
 <h3 id="install-some-nifty-little-package-installers-flatpak-vs-snap-fight">Install some nifty little package installers (Flatpak vs Snap.. FIGHT!)</h3>
 
 <pre><code>sudo pacman -S flatpak  
-yaourt -S snapd
+aurman -S snapd
 </code></pre>
 
 <h2 id="after-install-stuff-optional">After install stuff [Optional]:</h2>
@@ -501,6 +510,18 @@ UUID=&lt;your-uuid&gt; /media/games ntfs-3g defaults,discard 0 1
 </code></pre>
 
 <p>Simply reboot and enjoy your new NetworkManager</p>
+
+<hr />
+
+<h2 id="document-history">DOCUMENT HISTORY:</h2>
+
+<p><strong><em>08-23-2018</em></strong></p>
+
+<ul>
+<li><p>Swapped out <code>Yaourt</code> in favor of <code>Aurman</code>. It is no longer recommended to use Yaourt as your package manager since it hasn&rsquo;t received updates or security review in a very long time.</p></li>
+
+<li><p>Added document history for transparency sake.</p></li>
+</ul>
 
                     </section>
                 </article>
