@@ -76,7 +76,7 @@
                             
                         </span>
                          - 
-                        <time class="li-article-date">Wednesday, January 11, 2017</time> - <time class="li-article-date">Last updated: Wednesday, January 11, 2017</time>
+                        <time class="li-article-date">Wednesday, January 11, 2017</time> - <time class="li-article-date">Last updated: Tuesday, September 25, 2018</time>
                     </header>
                     <section>
                         
@@ -130,6 +130,40 @@ antigen apply
 <pre><code>echo '' &gt;&gt; .zshrc
 echo 'source $HOME/.aliases' &gt;&gt; .zshrc
 </code></pre>
+
+<h3 id="pacman-zsh-hook">Pacman ZSH hook</h3>
+
+<p>Install a Pacman hook to update the mirrorlist to specified criterea upon upgrading the <code>pacman-mirrorlist</code> package.</p>
+
+<pre><code>sudo mkdir -p /etc/pacman.d/hooks
+</code></pre>
+
+<p>Create a new file in <code>/etc/pacman.d/hooks/zshupgrade.hook</code> and paste the following code:</p>
+
+<pre><code>[Trigger]
+Operation = Upgrade
+Type = Package
+Target = zsh
+
+[Action]
+Description = Reload zshrc after upgrade
+When = PostTransaction
+Exec = /usr/bin/env sh -c &quot;/home/&lt;USER&gt;/.zshrc&quot;
+</code></pre>
+
+<p>Now every time the <code>zsh</code> package gets upgraded we reload the zsh shell.</p>
+
+<hr />
+
+<h2 id="document-history">DOCUMENT HISTORY:</h2>
+
+<p><strong><em>09-25-2018</em></strong></p>
+
+<ul>
+<li><p>Added useful Pacman hook for refreshing your zsh shell session after <code>zsh</code> package update. Credits: <a href="https://github.com/Tead">Tead</a>.</p></li>
+
+<li><p>Added document history for transparency sake.</p></li>
+</ul>
 
                     </section>
                 </article>

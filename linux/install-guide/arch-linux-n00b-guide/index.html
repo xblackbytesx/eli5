@@ -74,7 +74,7 @@
                             
                         </span>
                          - 
-                        <time class="li-article-date">Tuesday, January 10, 2017</time> - <time class="li-article-date">Last updated: Thursday, August 23, 2018</time>
+                        <time class="li-article-date">Tuesday, January 10, 2017</time> - <time class="li-article-date">Last updated: Tuesday, September 25, 2018</time>
                     </header>
                     <section>
                         
@@ -432,7 +432,7 @@ sudo systemctl enable NetworkManager.service
 
 <h3 id="install-some-awesome-packages">Install some awesome packages</h3>
 
-<pre><code>sudo pacman -S file-roller vlc vim git jdk8-openjdk keepassxc inox
+<pre><code>sudo pacman -S file-roller vlc vim git keepassxc reflector jdk8-openjdk
 </code></pre>
 
 <h4 id="add-a-mozilla-signature-in-order-to-build-firefox">Add a Mozilla signature in order to build Firefox</h4>
@@ -460,6 +460,31 @@ aurman -S snapd
 </code></pre>
 
 <h2 id="after-install-stuff-optional">After install stuff [Optional]:</h2>
+
+<h3 id="pacman-hooks">Pacman hooks</h3>
+
+<p>Install a Pacman hook to update the mirrorlist to specified criterea upon upgrading the <code>pacman-mirrorlist</code> package.</p>
+
+<pre><code>sudo mkdir -p /etc/pacman.d/hooks
+</code></pre>
+
+<p>Create a new file in <code>/etc/pacman.d/hooks/mirrorupgrade.hook</code> and paste the following code:</p>
+
+<pre><code>[Trigger]
+Operation = Upgrade
+Type = Package
+Target = pacman-mirrorlist
+
+[Action]
+Description = Updating pacman-mirrorlist with reflector and removing pacnew...
+When = PostTransaction
+Depends = reflector
+Exec = /usr/bin/env sh -c &quot;reflector --country 'Netherlands' --latest 10 --protocol https --age 12 --sort rate --save /etc/pacman.d/mirrorlist; if [[ -f /etc/pacman.d/mirrorlist.pacnew ]]; then rm /etc/pacman.d/mirrorlist.pacnew; fi&quot;
+</code></pre>
+
+<p>Now every time the <code>pacman-mirrorlist</code> package gets upgraded (ie. new mirrors get added) we use <code>reflector</code> to test the mirror speed and protocol to obtain a new ordered mirrorlist.</p>
+
+<p>NOTE: The above script depends on <code>reflector</code> so be sure to have it installed as described above.</p>
 
 <h3 id="terminal-preference">Terminal preference</h3>
 
@@ -514,6 +539,12 @@ UUID=&lt;your-uuid&gt; /media/games ntfs-3g defaults,discard 0 1
 <hr />
 
 <h2 id="document-history">DOCUMENT HISTORY:</h2>
+
+<p><strong><em>09-25-2018</em></strong></p>
+
+<ul>
+<li>Added useful Pacman hook for testing the new entries in <code>pacman-mirrorlist</code> according to predefined criterea. Credits: <a href="https://github.com/Tead">Tead</a>.</li>
+</ul>
 
 <p><strong><em>08-23-2018</em></strong></p>
 
