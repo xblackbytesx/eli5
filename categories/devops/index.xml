@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Install Guides on Explain IT Like I&#39;m 5</title>
-    <link>http://eli5.it/series/install-guides/</link>
-    <description>Recent content in Install Guides on Explain IT Like I&#39;m 5</description>
+    <title>Devops on Explain IT Like I&#39;m 5</title>
+    <link>http://eli5.it/categories/devops/</link>
+    <description>Recent content in Devops on Explain IT Like I&#39;m 5</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>Creative Commons Attribution 4.0 International</copyright>
     <lastBuildDate>Fri, 26 Oct 2018 08:58:03 +0100</lastBuildDate>
     
-	<atom:link href="http://eli5.it/series/install-guides/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://eli5.it/categories/devops/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -21,16 +21,6 @@
       <description>Nginx aurman -S nginx  Note: the default path for your web content on Arch is /usr/share/nginx/html/.
 Start Nginx on boot: sudo systemctl enable nginx.service  MariaDB aurman -S mariadb  Note: Before starting the MariaDB server you need to issue the following command:
 mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql  Importing a large database: mysql -u {DB-USER-NAME} -p {DB-NAME} &amp;lt; {db.file.sql path}  Start MariaDB on boot: sudo systemctl enable mariadb.</description>
-    </item>
-    
-    <item>
-      <title>[UPDATED] Arch Linux n00b guide</title>
-      <link>http://eli5.it/linux/install-guide/arch-linux-n00b-guide/</link>
-      <pubDate>Tue, 10 Jan 2017 00:14:35 +0100</pubDate>
-      
-      <guid>http://eli5.it/linux/install-guide/arch-linux-n00b-guide/</guid>
-      <description>Prerequisites Check internet connection ping -c 3 www.google.com  If needed try connecting via WiFi wifi-menu  Check EFI vars present efivar -l  Main installation Set system time using NTP: timedatectl set-ntp true timedatectl status  Partitioning TIP: If dual-booting leave a 128MiB empty ‘gap’ partition in between your ‘other os’ and your new partition.
-Zap all data on disk and create a new GPT table. Show current partition table</description>
     </item>
     
   </channel>

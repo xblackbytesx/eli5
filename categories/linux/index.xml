@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>Creative Commons Attribution 4.0 International</copyright>
-    <lastBuildDate>Sat, 28 Apr 2018 15:27:34 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 26 Oct 2018 08:58:03 +0100</lastBuildDate>
     
 	<atom:link href="http://eli5.it/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LEMP n00b guide</title>
+      <link>http://eli5.it/linux/devops/lemp-n00b-guide/</link>
+      <pubDate>Fri, 26 Oct 2018 08:58:03 +0100</pubDate>
+      
+      <guid>http://eli5.it/linux/devops/lemp-n00b-guide/</guid>
+      <description>Nginx aurman -S nginx  Note: the default path for your web content on Arch is /usr/share/nginx/html/.
+Start Nginx on boot: sudo systemctl enable nginx.service  MariaDB aurman -S mariadb  Note: Before starting the MariaDB server you need to issue the following command:
+mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql  Importing a large database: mysql -u {DB-USER-NAME} -p {DB-NAME} &amp;lt; {db.file.sql path}  Start MariaDB on boot: sudo systemctl enable mariadb.</description>
+    </item>
     
     <item>
       <title>GPG Basics</title>
@@ -51,7 +62,7 @@ Add some awesome plugins like Git support and Syntax hightlighting
     </item>
     
     <item>
-      <title>[UPDATED] arch linux n00b guide</title>
+      <title>[UPDATED] Arch Linux n00b guide</title>
       <link>http://eli5.it/linux/install-guide/arch-linux-n00b-guide/</link>
       <pubDate>Tue, 10 Jan 2017 00:14:35 +0100</pubDate>
       
