@@ -248,25 +248,15 @@ nano /mnt/etc/fstab (for SSD change swap line from ‘defaults’ to ‘defaults
 export LANG=en_US.UTF-8
 </code></pre>
 
-<p>Enabling Multilib and AUR repos</p>
+<p>Enabling the AUR repo</p>
 
 <pre><code>nano /etc/pacman.conf
 </code></pre>
 
-<p>Scroll down and uncomment these lines:</p>
-
-<p><code>[multilib]
-Include = /etc/pacman.d/mirrorlist</code></p>
-
-<p>And add these lines at the bottom of the file:<br />
+<p>Add these lines at the bottom of the file:<br />
 <code>[archlinuxfr]</code><br />
 <code>SigLevel = Never</code><br />
 <code>Server = https://repo.archlinux.fr/$arch</code></p>
-
-<p>Update the repos&rsquo;s</p>
-
-<pre><code>pacman -Syu
-</code></pre>
 
 <h3 id="user-management">User Management</h3>
 
@@ -319,7 +309,7 @@ passwd &lt;user&gt;
 
 <p>Write long UUID to file for later use</p>
 
-<pre><code>blkid | grep sda2 | cut -f2 -d\&quot; &gt; /boot/loader/entries/arch.conf
+<pre><code>blkid | grep sda2 | cut -f2 -d\&quot; &gt;&gt; /boot/loader/entries/arch.conf
 </code></pre>
 
 <p>Create an entry for Arch</p>
@@ -390,159 +380,196 @@ reboot
 
 <pre><code>sudo pacman -S gnome gdm
 sudo systemctl enable gdm.service
-sudo pacman -S gnome-tweak-tool gnome-keyring
+sudo pacman -S gnome-tweaks gnome-keyring
 </code></pre>
 
 <h3 id="installing-a-aur-helper">Installing a AUR helper</h3>
 
 <p>In Arch we have a great asset that is the Arch User Respository (AUR). Here we can find all kinds of user maintained packages that would otherwise be quite hard to install. Using an AUR helper makes installing packages from the AUR as easy as Pacman for instance. Let&rsquo;s install my favorite one, aurman!</p>
 
+<pre><code>gpg --recv-keys 465022E743D71E39
+</code></pre>
+
 <pre><code>git clone https://github.com/polygamma/aurman.git
-cd aurman &amp;&amp; makepkg -si
 </code></pre>
 
-<h3 id="installing-and-enabling-a-firewall">Installing and enabling a Firewall</h3>
+<p>cd aurman &amp;&amp; makepkg -si</p>
 
-<pre><code>sudo pacman -S ufw
-sudo ufw enable
+<pre><code>
+### Installing and enabling a Firewall
 </code></pre>
 
-<h3 id="installing-and-enabling-openssh-server">Installing and enabling OpenSSH-Server</h3>
+<p>sudo pacman -S ufw
+sudo ufw enable</p>
 
-<pre><code>sudo pacman -S openssh
+<pre><code>
+### Installing and enabling OpenSSH-Server
 </code></pre>
 
-<pre><code>sudo systemctl start sshd.socket
+<p>sudo pacman -S openssh</p>
+
+<pre><code>
 </code></pre>
 
-<pre><code>sudo systemctl enable sshd.socket
+<p>sudo systemctl start sshd.socket</p>
+
+<pre><code>
 </code></pre>
 
-<p>If needed make sure the SSH connection get&rsquo;s through the Firewall</p>
+<p>sudo systemctl enable sshd.socket</p>
 
-<pre><code>sudo ufw allow 22
+<pre><code>
+If needed make sure the SSH connection get's through the Firewall
 </code></pre>
 
-<h3 id="enable-networkmanager">Enable NetworkManager</h3>
+<p>sudo ufw allow 22</p>
 
-<pre><code>sudo pacman -S networkmanager networkmanager-openvpn
-sudo systemctl enable NetworkManager.service
+<pre><code>
+### Enable NetworkManager
 </code></pre>
 
-<h3 id="install-some-funky-themes">Install some funky themes</h3>
+<p>sudo pacman -S networkmanager networkmanager-openvpn
+sudo systemctl enable NetworkManager.service</p>
 
-<pre><code>aurman -S adapta-gtk-theme-git paper-icon-theme-git
+<pre><code>
+### Install some funky themes
 </code></pre>
 
-<h3 id="install-some-awesome-packages">Install some awesome packages</h3>
+<p>aurman -S adapta-gtk-theme-git paper-icon-theme-git</p>
 
-<pre><code>sudo pacman -S file-roller vlc vim git keepassxc reflector jdk8-openjdk
+<pre><code>
+### Install some awesome packages
 </code></pre>
 
-<h4 id="add-a-mozilla-signature-in-order-to-build-firefox">Add a Mozilla signature in order to build Firefox</h4>
+<p>sudo pacman -S file-roller vlc vim git keepassxc reflector jdk8-openjdk</p>
 
-<pre><code>gpg --recv-key 0x61B7B526D98F0353
+<pre><code>
+#### Add a Mozilla signature in order to build Firefox
 </code></pre>
 
-<pre><code>aurman -S chrome-gnome-shell-git firefox-nightly
+<p>gpg &ndash;recv-key 0x61B7B526D98F0353</p>
+
+<pre><code>
 </code></pre>
 
-<h3 id="install-some-support-libraries">Install some support libraries</h3>
+<p>aurman -S chrome-gnome-shell-git firefox-nightly</p>
 
-<pre><code>sudo pacman -S xdotool xsel udisks2 dosfstools exfat-utils ntfs-3g
+<pre><code>
+### Install some support libraries
 </code></pre>
 
-<p>Enable minimal media codecs</p>
+<p>sudo pacman -S xdotool xsel udisks2 dosfstools exfat-utils ntfs-3g</p>
 
-<pre><code>sudo pacman -S gstreamer gst-plugins-good gst-plugins-ugly
+<pre><code>
+Enable minimal media codecs
 </code></pre>
 
-<h3 id="install-some-nifty-little-package-installers-flatpak-vs-snap-fight">Install some nifty little package installers (Flatpak vs Snap.. FIGHT!)</h3>
+<p>sudo pacman -S gstreamer gst-plugins-good gst-plugins-ugly</p>
 
-<pre><code>sudo pacman -S flatpak  
-aurman -S snapd
+<pre><code>
+### Install some nifty little package installers (Flatpak vs Snap.. FIGHT!)
 </code></pre>
 
-<h2 id="after-install-stuff-optional">After install stuff [Optional]:</h2>
+<p>sudo pacman -S flatpak<br />
+aurman -S snapd</p>
 
-<h3 id="pacman-hooks">Pacman hooks</h3>
+<pre><code>
+## After install stuff [Optional]:
 
-<p>Install a Pacman hook to update the mirrorlist to specified criterea upon upgrading the <code>pacman-mirrorlist</code> package.</p>
-
-<pre><code>sudo mkdir -p /etc/pacman.d/hooks
+### Pacman hooks
+Install a Pacman hook to update the mirrorlist to specified criterea upon upgrading the `pacman-mirrorlist` package.
 </code></pre>
 
-<p>Create a new file in <code>/etc/pacman.d/hooks/mirrorupgrade.hook</code> and paste the following code:</p>
+<p>sudo mkdir -p /etc/pacman.d/hooks</p>
 
-<pre><code>[Trigger]
+<pre><code>
+Create a new file in `/etc/pacman.d/hooks/mirrorupgrade.hook` and paste the following code:
+</code></pre>
+
+<p>[Trigger]
 Operation = Upgrade
 Type = Package
-Target = pacman-mirrorlist
+Target = pacman-mirrorlist</p>
 
-[Action]
-Description = Updating pacman-mirrorlist with reflector and removing pacnew...
+<p>[Action]
+Description = Updating pacman-mirrorlist with reflector and removing pacnew&hellip;
 When = PostTransaction
 Depends = reflector
-Exec = /usr/bin/env sh -c &quot;reflector --country 'Netherlands' --latest 10 --protocol https --age 12 --sort rate --save /etc/pacman.d/mirrorlist; if [[ -f /etc/pacman.d/mirrorlist.pacnew ]]; then rm /etc/pacman.d/mirrorlist.pacnew; fi&quot;
+Exec = /usr/bin/env sh -c &ldquo;reflector &ndash;country &lsquo;Netherlands&rsquo; &ndash;latest 10 &ndash;protocol https &ndash;age 12 &ndash;sort rate &ndash;save /etc/pacman.d/mirrorlist; if [[ -f /etc/pacman.d/mirrorlist.pacnew ]]; then rm /etc/pacman.d/mirrorlist.pacnew; fi&rdquo;</p>
+
+<pre><code>
+Now every time the `pacman-mirrorlist` package gets upgraded (ie. new mirrors get added) we use `reflector` to test the mirror speed and protocol to obtain a new ordered mirrorlist.
+
+NOTE: The above script depends on `reflector` so be sure to have it installed as described above.
+
+### Terminal preference
+See the [zsh n00b guide](http://eli5.it/linux/tooling/zsh)
+
+
+### Auto mounting of `/media/data` and `/media/games`.
+First make the folders to mount to:
 </code></pre>
 
-<p>Now every time the <code>pacman-mirrorlist</code> package gets upgraded (ie. new mirrors get added) we use <code>reflector</code> to test the mirror speed and protocol to obtain a new ordered mirrorlist.</p>
+<p>sudo mkdir -p /media/data
+sudo mkdir -p /media/games</p>
 
-<p>NOTE: The above script depends on <code>reflector</code> so be sure to have it installed as described above.</p>
-
-<h3 id="terminal-preference">Terminal preference</h3>
-
-<p>See the <a href="http://eli5.it/linux/tooling/zsh">zsh n00b guide</a></p>
-
-<h3 id="auto-mounting-of-media-data-and-media-games">Auto mounting of <code>/media/data</code> and <code>/media/games</code>.</h3>
-
-<p>First make the folders to mount to:</p>
-
-<pre><code>sudo mkdir -p /media/data
-sudo mkdir -p /media/games
+<pre><code>
+#### Find the proper UUIDs:
 </code></pre>
 
-<h4 id="find-the-proper-uuids">Find the proper UUIDs:</h4>
+<p>sudo blkid | grep sdb1<br />
+sudo blkid | grep sdc1</p>
 
-<pre><code>sudo blkid | grep sdb1  
-sudo blkid | grep sdc1
+<pre><code>
+#### Then add the UUID of desired drive to the fstab like so:
 </code></pre>
 
-<h4 id="then-add-the-uuid-of-desired-drive-to-the-fstab-like-so">Then add the UUID of desired drive to the fstab like so:</h4>
+<p>UUID=<your-uuid> /media/data ext4 defaults 0 1
+UUID=<your-uuid> /media/games ntfs-3g defaults,discard 0 1</p>
 
-<pre><code>UUID=&lt;your-uuid&gt; /media/data ext4 defaults 0 1
-UUID=&lt;your-uuid&gt; /media/games ntfs-3g defaults,discard 0 1
+<pre><code>
+### Installing steam native runtime:
 </code></pre>
 
-<h3 id="installing-steam-native-runtime">Installing steam native runtime:</h3>
+<p>sudo pacman -S steam steam-native-runtime</p>
 
-<pre><code>sudo pacman -S steam steam-native-runtime
+<pre><code>
+---
+
+## Device specifics and troubleshooting
+
+### Macbook video driver:
 </code></pre>
 
-<hr />
+<p>sudo pacman -S xf86-video-intel</p>
 
-<h2 id="device-specifics-and-troubleshooting">Device specifics and troubleshooting</h2>
+<pre><code>
+### Use NetworkManager instead of netctl
+During installation we enabled the netctl-auto configuration in order to have access to wireless internet post-install. This is because life after install is just a terminal prompt. After installing a GUI though you probably would like to start using a graphical network manager. In this case we're going to assume you installed GNOME.
 
-<h3 id="macbook-video-driver">Macbook video driver:</h3>
-
-<pre><code>sudo pacman -S xf86-video-intel
 </code></pre>
 
-<h3 id="use-networkmanager-instead-of-netctl">Use NetworkManager instead of netctl</h3>
+<p>sudo systemctl disable netctl-auto@<YOUR_INTERFACE>.service</p>
 
-<p>During installation we enabled the netctl-auto configuration in order to have access to wireless internet post-install. This is because life after install is just a terminal prompt. After installing a GUI though you probably would like to start using a graphical network manager. In this case we&rsquo;re going to assume you installed GNOME.</p>
-
-<pre><code>sudo systemctl disable netctl-auto@&lt;YOUR_INTERFACE&gt;.service
+<pre><code>
 </code></pre>
 
-<pre><code>sudo systemctl enable NetworkManager.service
-</code></pre>
+<p>sudo systemctl enable NetworkManager.service
+```</p>
 
 <p>Simply reboot and enjoy your new NetworkManager</p>
 
 <hr />
 
 <h2 id="document-history">DOCUMENT HISTORY:</h2>
+
+<p><strong><em>12-04-2018</em></strong></p>
+
+<ul>
+<li><p>I no longer encourage the use of MultiLib.</p></li>
+
+<li><p>Added a step to fetch and install the Aurman signature.</p></li>
+</ul>
 
 <p><strong><em>09-25-2018</em></strong></p>
 
