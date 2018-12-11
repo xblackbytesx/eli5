@@ -393,169 +393,145 @@ sudo pacman -S gnome-tweaks gnome-keyring
 <pre><code>git clone https://github.com/polygamma/aurman.git
 </code></pre>
 
-<p>cd aurman &amp;&amp; makepkg -si</p>
-
-<pre><code>
-### Installing and enabling a Firewall
+<pre><code>cd aurman &amp;&amp; makepkg -si
 </code></pre>
 
-<p>sudo pacman -S ufw
-sudo ufw enable</p>
+<h3 id="installing-and-enabling-a-firewall">Installing and enabling a Firewall</h3>
 
-<pre><code>
-### Installing and enabling OpenSSH-Server
+<pre><code>sudo pacman -S ufw
+sudo ufw enable
 </code></pre>
 
-<p>sudo pacman -S openssh</p>
+<h3 id="installing-and-enabling-openssh-server">Installing and enabling OpenSSH-Server</h3>
 
-<pre><code>
+<pre><code>sudo pacman -S openssh
 </code></pre>
 
-<p>sudo systemctl start sshd.socket</p>
-
-<pre><code>
+<pre><code>sudo systemctl start sshd.socket
 </code></pre>
 
-<p>sudo systemctl enable sshd.socket</p>
-
-<pre><code>
-If needed make sure the SSH connection get's through the Firewall
+<pre><code>sudo systemctl enable sshd.socket
 </code></pre>
 
-<p>sudo ufw allow 22</p>
+<p>If needed make sure the SSH connection get&rsquo;s through the Firewall</p>
 
-<pre><code>
-### Enable NetworkManager
+<pre><code>sudo ufw allow 22
 </code></pre>
 
-<p>sudo pacman -S networkmanager networkmanager-openvpn
-sudo systemctl enable NetworkManager.service</p>
+<h3 id="enable-networkmanager">Enable NetworkManager</h3>
 
-<pre><code>
-### Install some funky themes
+<pre><code>sudo pacman -S networkmanager networkmanager-openvpn
+sudo systemctl enable NetworkManager.service
 </code></pre>
 
-<p>aurman -S adapta-gtk-theme-git paper-icon-theme-git</p>
+<h3 id="install-some-funky-themes">Install some funky themes</h3>
 
-<pre><code>
-### Install some awesome packages
+<pre><code>aurman -S adapta-gtk-theme-git paper-icon-theme-git
 </code></pre>
 
-<p>sudo pacman -S file-roller vlc vim git keepassxc reflector jdk8-openjdk</p>
+<h3 id="install-some-awesome-packages">Install some awesome packages</h3>
 
-<pre><code>
-#### Add a Mozilla signature in order to build Firefox
+<pre><code>sudo pacman -S file-roller vlc vim git keepassxc reflector jdk8-openjdk
 </code></pre>
 
-<p>gpg &ndash;recv-key 0x61B7B526D98F0353</p>
+<h4 id="add-a-mozilla-signature-in-order-to-build-firefox">Add a Mozilla signature in order to build Firefox</h4>
 
-<pre><code>
+<pre><code>gpg --recv-key 0x61B7B526D98F0353
 </code></pre>
 
-<p>aurman -S chrome-gnome-shell-git firefox-nightly</p>
-
-<pre><code>
-### Install some support libraries
+<pre><code>aurman -S chrome-gnome-shell-git firefox-nightly
 </code></pre>
 
-<p>sudo pacman -S xdotool xsel udisks2 dosfstools exfat-utils ntfs-3g</p>
+<h3 id="install-some-support-libraries">Install some support libraries</h3>
 
-<pre><code>
-Enable minimal media codecs
+<pre><code>sudo pacman -S xdotool xsel udisks2 dosfstools exfat-utils ntfs-3g
 </code></pre>
 
-<p>sudo pacman -S gstreamer gst-plugins-good gst-plugins-ugly</p>
+<p>Enable minimal media codecs</p>
 
-<pre><code>
-### Install some nifty little package installers (Flatpak vs Snap.. FIGHT!)
+<pre><code>sudo pacman -S gstreamer gst-plugins-good gst-plugins-ugly
 </code></pre>
 
-<p>sudo pacman -S flatpak<br />
-aurman -S snapd</p>
+<h3 id="install-some-nifty-little-package-installers-flatpak-vs-snap-fight">Install some nifty little package installers (Flatpak vs Snap.. FIGHT!)</h3>
 
-<pre><code>
-## After install stuff [Optional]:
-
-### Pacman hooks
-Install a Pacman hook to update the mirrorlist to specified criterea upon upgrading the `pacman-mirrorlist` package.
+<pre><code>sudo pacman -S flatpak  
+aurman -S snapd
 </code></pre>
 
-<p>sudo mkdir -p /etc/pacman.d/hooks</p>
+<h2 id="after-install-stuff-optional">After install stuff [Optional]:</h2>
 
-<pre><code>
-Create a new file in `/etc/pacman.d/hooks/mirrorupgrade.hook` and paste the following code:
+<h3 id="pacman-hooks">Pacman hooks</h3>
+
+<p>Install a Pacman hook to update the mirrorlist to specified criterea upon upgrading the <code>pacman-mirrorlist</code> package.</p>
+
+<pre><code>sudo mkdir -p /etc/pacman.d/hooks
 </code></pre>
 
-<p>[Trigger]
+<p>Create a new file in <code>/etc/pacman.d/hooks/mirrorupgrade.hook</code> and paste the following code:</p>
+
+<pre><code>[Trigger]
 Operation = Upgrade
 Type = Package
-Target = pacman-mirrorlist</p>
+Target = pacman-mirrorlist
 
-<p>[Action]
-Description = Updating pacman-mirrorlist with reflector and removing pacnew&hellip;
+[Action]
+Description = Updating pacman-mirrorlist with reflector and removing pacnew...
 When = PostTransaction
 Depends = reflector
-Exec = /usr/bin/env sh -c &ldquo;reflector &ndash;country &lsquo;Netherlands&rsquo; &ndash;latest 10 &ndash;protocol https &ndash;age 12 &ndash;sort rate &ndash;save /etc/pacman.d/mirrorlist; if [[ -f /etc/pacman.d/mirrorlist.pacnew ]]; then rm /etc/pacman.d/mirrorlist.pacnew; fi&rdquo;</p>
-
-<pre><code>
-Now every time the `pacman-mirrorlist` package gets upgraded (ie. new mirrors get added) we use `reflector` to test the mirror speed and protocol to obtain a new ordered mirrorlist.
-
-NOTE: The above script depends on `reflector` so be sure to have it installed as described above.
-
-### Terminal preference
-See the [zsh n00b guide](http://eli5.it/linux/tooling/zsh)
-
-
-### Auto mounting of `/media/data` and `/media/games`.
-First make the folders to mount to:
+Exec = /usr/bin/env sh -c &quot;reflector --country 'Netherlands' --latest 10 --protocol https --age 12 --sort rate --save /etc/pacman.d/mirrorlist; if [[ -f /etc/pacman.d/mirrorlist.pacnew ]]; then rm /etc/pacman.d/mirrorlist.pacnew; fi&quot;
 </code></pre>
 
-<p>sudo mkdir -p /media/data
-sudo mkdir -p /media/games</p>
+<p>Now every time the <code>pacman-mirrorlist</code> package gets upgraded (ie. new mirrors get added) we use <code>reflector</code> to test the mirror speed and protocol to obtain a new ordered mirrorlist.</p>
 
-<pre><code>
-#### Find the proper UUIDs:
+<p>NOTE: The above script depends on <code>reflector</code> so be sure to have it installed as described above.</p>
+
+<h3 id="terminal-preference">Terminal preference</h3>
+
+<p>See the <a href="http://eli5.it/linux/tooling/zsh">zsh n00b guide</a></p>
+
+<h3 id="auto-mounting-of-media-data-and-media-games">Auto mounting of <code>/media/data</code> and <code>/media/games</code>.</h3>
+
+<p>First make the folders to mount to:</p>
+
+<pre><code>sudo mkdir -p /media/data
+sudo mkdir -p /media/games
 </code></pre>
 
-<p>sudo blkid | grep sdb1<br />
-sudo blkid | grep sdc1</p>
+<h4 id="find-the-proper-uuids">Find the proper UUIDs:</h4>
 
-<pre><code>
-#### Then add the UUID of desired drive to the fstab like so:
+<pre><code>sudo blkid | grep sdb1  
+sudo blkid | grep sdc1
 </code></pre>
 
-<p>UUID=<your-uuid> /media/data ext4 defaults 0 1
-UUID=<your-uuid> /media/games ntfs-3g defaults,discard 0 1</p>
+<h4 id="then-add-the-uuid-of-desired-drive-to-the-fstab-like-so">Then add the UUID of desired drive to the fstab like so:</h4>
 
-<pre><code>
-### Installing steam native runtime:
+<pre><code>UUID=&lt;your-uuid&gt; /media/data ext4 defaults 0 1
+UUID=&lt;your-uuid&gt; /media/games ntfs-3g defaults,discard 0 1
 </code></pre>
 
-<p>sudo pacman -S steam steam-native-runtime</p>
+<h3 id="installing-steam-native-runtime">Installing steam native runtime:</h3>
 
-<pre><code>
----
-
-## Device specifics and troubleshooting
-
-### Macbook video driver:
+<pre><code>sudo pacman -S steam steam-native-runtime
 </code></pre>
 
-<p>sudo pacman -S xf86-video-intel</p>
+<hr />
 
-<pre><code>
-### Use NetworkManager instead of netctl
-During installation we enabled the netctl-auto configuration in order to have access to wireless internet post-install. This is because life after install is just a terminal prompt. After installing a GUI though you probably would like to start using a graphical network manager. In this case we're going to assume you installed GNOME.
+<h2 id="device-specifics-and-troubleshooting">Device specifics and troubleshooting</h2>
 
+<h3 id="macbook-video-driver">Macbook video driver:</h3>
+
+<pre><code>sudo pacman -S xf86-video-intel
 </code></pre>
 
-<p>sudo systemctl disable netctl-auto@<YOUR_INTERFACE>.service</p>
+<h3 id="use-networkmanager-instead-of-netctl">Use NetworkManager instead of netctl</h3>
 
-<pre><code>
+<p>During installation we enabled the netctl-auto configuration in order to have access to wireless internet post-install. This is because life after install is just a terminal prompt. After installing a GUI though you probably would like to start using a graphical network manager. In this case we&rsquo;re going to assume you installed GNOME.</p>
+
+<pre><code>sudo systemctl disable netctl-auto@&lt;YOUR_INTERFACE&gt;.service
 </code></pre>
 
-<p>sudo systemctl enable NetworkManager.service
-```</p>
+<pre><code>sudo systemctl enable NetworkManager.service
+</code></pre>
 
 <p>Simply reboot and enjoy your new NetworkManager</p>
 
