@@ -268,7 +268,9 @@ export LANG=en_US.UTF-8
 <h4 id="create-user">Create user:</h4>
 
 <pre><code>useradd -m -g users -G wheel,storage,power -s /bin/bash &lt;user&gt;
-passwd &lt;user&gt;
+</code></pre>
+
+<pre><code>passwd &lt;user&gt;
 </code></pre>
 
 <h4 id="setup-sudoers">Setup sudoers:</h4>
@@ -371,21 +373,17 @@ reboot
 <pre><code>sudo pacman -S mesa xorg-server xorg-xinit xorg-twm xorg-xclock
 </code></pre>
 
-<p>On laptops with touchpad:</p>
-
-<pre><code>sudo pacman -S xf86-input-synaptics
-</code></pre>
-
 <h3 id="install-awesome-gui-stuff">Install awesome GUI stuff</h3>
 
-<pre><code>sudo pacman -S gnome gdm
-sudo systemctl enable gdm.service
-sudo pacman -S gnome-tweaks gnome-keyring
+<pre><code>sudo pacman -S gnome gdm gnome-tweaks chrome-gnome-shell gnome-keyring
+</code></pre>
+
+<pre><code>sudo systemctl enable gdm.service
 </code></pre>
 
 <h3 id="installing-a-aur-helper">Installing a AUR helper</h3>
 
-<p>In Arch we have a great asset that is the Arch User Respository (AUR). Here we can find all kinds of user maintained packages that would otherwise be quite hard to install. Using an AUR helper makes installing packages from the AUR as easy as Pacman for instance. Let&rsquo;s install my favorite one, aurman!</p>
+<p>In Arch we have a great asset that is the Arch User Respository (AUR). Here we can find all kinds of user maintained <del>packages</del> build-scripts that would otherwise be quite hard to install. Using an AUR helper makes installing packages from the AUR as easy as Pacman for instance. Let&rsquo;s install my favorite one, Aurman!</p>
 
 <pre><code>gpg --recv-keys 465022E743D71E39
 </code></pre>
@@ -399,7 +397,9 @@ sudo pacman -S gnome-tweaks gnome-keyring
 <h3 id="installing-and-enabling-a-firewall">Installing and enabling a Firewall</h3>
 
 <pre><code>sudo pacman -S ufw
-sudo ufw enable
+</code></pre>
+
+<pre><code>sudo ufw enable
 </code></pre>
 
 <h3 id="installing-and-enabling-openssh-server">Installing and enabling OpenSSH-Server</h3>
@@ -426,7 +426,10 @@ sudo systemctl enable NetworkManager.service
 
 <h3 id="install-some-funky-themes">Install some funky themes</h3>
 
-<pre><code>aurman -S adapta-gtk-theme-git paper-icon-theme-git
+<pre><code>sudo pacman -S adapta-gtk-theme
+</code></pre>
+
+<pre><code>aurman -S paper-icon-theme-git
 </code></pre>
 
 <h3 id="install-some-awesome-packages">Install some awesome packages</h3>
@@ -439,7 +442,7 @@ sudo systemctl enable NetworkManager.service
 <pre><code>gpg --recv-key 0x61B7B526D98F0353
 </code></pre>
 
-<pre><code>aurman -S chrome-gnome-shell-git firefox-nightly
+<pre><code>aurman -S firefox-nightly
 </code></pre>
 
 <h3 id="install-some-support-libraries">Install some support libraries</h3>
@@ -452,13 +455,15 @@ sudo systemctl enable NetworkManager.service
 <pre><code>sudo pacman -S gstreamer gst-plugins-good gst-plugins-ugly
 </code></pre>
 
+<h2 id="after-install-stuff-optional">After install stuff [Optional]:</h2>
+
 <h3 id="install-some-nifty-little-package-installers-flatpak-vs-snap-fight">Install some nifty little package installers (Flatpak vs Snap.. FIGHT!)</h3>
 
 <pre><code>sudo pacman -S flatpak  
-aurman -S snapd
 </code></pre>
 
-<h2 id="after-install-stuff-optional">After install stuff [Optional]:</h2>
+<pre><code>aurman -S snapd
+</code></pre>
 
 <h3 id="pacman-hooks">Pacman hooks</h3>
 
@@ -538,6 +543,14 @@ UUID=&lt;your-uuid&gt; /media/games ntfs-3g defaults,discard 0 1
 <hr />
 
 <h2 id="document-history">DOCUMENT HISTORY:</h2>
+
+<p><strong><em>12-12-2018</em></strong></p>
+
+<ul>
+<li><p>I no longer recommend to install the synaptics-touch driver since the built-in support now exceeds the performance and configuration options of the third-party integration. It just gets in the way of libinput.</p></li>
+
+<li><p>More logical bundling of package installations and some more consistent use of code blocks. One command per block is my stride.</p></li>
+</ul>
 
 <p><strong><em>12-04-2018</em></strong></p>
 
