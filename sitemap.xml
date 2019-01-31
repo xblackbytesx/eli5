@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://eli5.it/linux/tooling/imagemagick/</loc>
+    <lastmod>2019-01-31T11:36:35+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://eli5.it/linux/devops/lemp-n00b-guide/</loc>
     <lastmod>2018-10-26T08:58:03+01:00</lastmod>
   </url>
@@ -68,7 +73,7 @@
   
   <url>
     <loc>http://eli5.it/</loc>
-    <lastmod>2018-10-26T08:58:03+01:00</lastmod>
+    <lastmod>2019-01-31T11:36:35+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -92,7 +97,7 @@
   
   <url>
     <loc>http://eli5.it/linux/</loc>
-    <lastmod>2018-10-26T08:58:03+01:00</lastmod>
+    <lastmod>2019-01-31T11:36:35+01:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>Creative Commons Attribution 4.0 International</copyright>
-    <lastBuildDate>Fri, 26 Oct 2018 08:58:03 +0100</lastBuildDate>
+    <lastBuildDate>Thu, 31 Jan 2019 11:36:35 +0100</lastBuildDate>
     
 	<atom:link href="http://eli5.it/linux/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Imagemagick</title>
+      <link>http://eli5.it/linux/tooling/imagemagick/</link>
+      <pubDate>Thu, 31 Jan 2019 11:36:35 +0100</pubDate>
+      
+      <guid>http://eli5.it/linux/tooling/imagemagick/</guid>
+      <description> Installing Imagemagick sudo pacman -S imagemagick  Stripping metadata (EXIF) mogrify -strip *.JPG  Resizing image by half mogrify -resize 50% *.JPG  Of course you can combin all of these arguments mogrify -resize 50% -strip *.JPG  </description>
+    </item>
     
     <item>
       <title>LEMP n00b guide</title>
