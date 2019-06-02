@@ -3,8 +3,38 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://eli5.it/</loc>
+    <lastmod>2019-01-31T11:36:35+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://eli5.it/linux/tooling/imagemagick/</loc>
     <lastmod>2019-01-31T11:36:35+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://eli5.it/linux/</loc>
+    <lastmod>2019-01-31T11:36:35+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://eli5.it/categories/</loc>
+    <lastmod>2018-12-12T00:14:06+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://eli5.it/categories/devops/</loc>
+    <lastmod>2018-10-26T08:58:03+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://eli5.it/series/install-guides/</loc>
+    <lastmod>2018-12-12T00:14:06+01:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -13,8 +43,32 @@
   </url>
   
   <url>
+    <loc>http://eli5.it/categories/linux/</loc>
+    <lastmod>2018-12-12T00:14:06+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://eli5.it/series/</loc>
+    <lastmod>2018-12-12T00:14:06+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://eli5.it/linux/tooling/gpg-basics/</loc>
     <lastmod>2018-04-28T15:27:34+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://eli5.it/categories/tooling/</loc>
+    <lastmod>2018-09-25T00:14:07+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://eli5.it/internet/</loc>
+    <lastmod>2018-08-23T00:10:12+01:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -25,6 +79,18 @@
   <url>
     <loc>http://eli5.it/linux/devops/docker-n00b-guide/</loc>
     <lastmod>2018-01-04T10:49:03+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://eli5.it/categories/android/</loc>
+    <lastmod>2018-08-23T00:10:13+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://eli5.it/android/</loc>
+    <lastmod>2018-08-23T00:10:13+01:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -48,73 +114,7 @@
   </url>
   
   <url>
-    <loc>http://eli5.it/categories/android/</loc>
-    <lastmod>2018-08-23T00:10:13+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://eli5.it/android/</loc>
-    <lastmod>2018-08-23T00:10:13+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://eli5.it/categories/</loc>
-    <lastmod>2018-08-23T00:10:13+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://eli5.it/categories/devops/</loc>
-    <lastmod>2018-10-26T08:58:03+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://eli5.it/</loc>
-    <lastmod>2019-01-31T11:36:35+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://eli5.it/series/install-guides/</loc>
-    <lastmod>2018-10-26T08:58:03+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://eli5.it/internet/</loc>
-    <lastmod>2018-08-23T00:10:12+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://eli5.it/categories/linux/</loc>
-    <lastmod>2018-10-26T08:58:03+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://eli5.it/linux/</loc>
-    <lastmod>2019-01-31T11:36:35+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://eli5.it/series/</loc>
-    <lastmod>2018-10-26T08:58:03+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://eli5.it/tags/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://eli5.it/categories/tooling/</loc>
-    <lastmod>2018-04-28T15:27:34+01:00</lastmod>
     <priority>0</priority>
   </url>
   
